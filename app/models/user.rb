@@ -11,13 +11,16 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, 
-                  :remember_me, :latitude, :longitude, :time_zone_str, :reverse_geocode
+                  :remember_me, :latitude, :longitude, :time_zone_str, :reverse_geocode,
+                  :display_name
+                  
+  before_save :set_display_name
   
-  def display_name
-    if self.first_name.blank? || self.last_name.blank?
-      self.email.split("@")[0]
+  def set_display_name
+    if first_name.blank? || last_name.blank?
+      self.display_name = email.split("@")[0].capitalize
     else
-      self.first_name + " " + self.last_name
+      self.display_name = first_name.capitalize + " " + last_name.capitalize
     end
   end
     
