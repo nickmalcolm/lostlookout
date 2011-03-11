@@ -12,5 +12,5 @@ function hideMe(hide_this_element){
   }
 }
 function hideAll(){
-  $(".notice_container").parent().hide(400);
+  $(".notice_container, .alert_container").parent().hide(400);
 }
