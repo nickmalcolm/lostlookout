@@ -32,8 +32,8 @@ production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: temp_production
+  database: lostlookout_production
   pool: 5
-  username: root
-  password:
+  username: lostlookout
+  password: c21e577
   socket: /tmp/mysql.sock
