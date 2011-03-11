@@ -40,6 +40,10 @@ gem 'date_validator'
 # Deploy with Capistrano
 gem 'capistrano'
 
+#For compression of assets
+gem 'yui-compressor'
+gem 'jammit'
+
 # To use debugger
 # gem 'ruby-debug'
 

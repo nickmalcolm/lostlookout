@@ -1,0 +1,15 @@
+javascripts:
+  top:
+    - public/javascripts/jquery-1.4.1.min.js
+  bottom:
+    - public/javascripts/jquery.watermark.js
+    - public/javascripts/application.js
+    - public/javascripts/drop_down.js
+    - public/javascripts/jquery.tipTip.min.js
+
+stylesheets:
+  common:
+    - public/stylesheets/960.css
+    - public/stylesheets/layout.css
+    - public/stylesheets/bubble.css
+    - public/stylesheets/tipTip.css

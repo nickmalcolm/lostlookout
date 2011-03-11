@@ -37,6 +37,7 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.0.0)
+    closure-compiler (1.0.0)
     date_validator (0.6.1)
       activemodel (~> 3.0.0)
     devise (1.1.7)
@@ -50,6 +51,9 @@ GEM
       railties (>= 3.0.0)
     highline (1.6.1)
     i18n (0.5.0)
+    jammit (0.6.0)
+      closure-compiler (>= 0.1.0)
+      yui-compressor (>= 0.9.1)
     json (1.4.6)
     mail (2.2.15)
       activesupport (>= 2.3.6)
@@ -111,6 +115,7 @@ GEM
       rack (>= 1.0.0)
     warden (1.0.3)
       rack (>= 1.0.0)
+    yui-compressor (0.9.4)
 
 PLATFORMS
   ruby
@@ -120,9 +125,11 @@ DEPENDENCIES
   date_validator
   devise
   factory_girl_rails
+  jammit
   mysql2
   rails (~> 3.0.1)
   resque
   system_timer
   thinking-sphinx (= 2.0.2)
   tlsmail
+  yui-compressor
