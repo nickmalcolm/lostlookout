@@ -10,10 +10,11 @@ set :user, "lostlookout"
 set :rails_env, "production"
 set :branch, "master"
 
-
-role :web, "lostlookout.com"
-role :app, "lostlookout.com"
-role :db,  "lostlookout.com", :primary => true 
+ssh_options[:paranoid] = false
+ssh_options[:forward_agent] = true
+role :web, "lostlookout.southgatelabs.com"
+role :app, "lostlookout.southgatelabs.com"
+role :db,  "lostlookout.southgatelabs.com", :primary => true 
 
 namespace :deploy do
   # Using Phusion Passenger
