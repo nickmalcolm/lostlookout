@@ -5,9 +5,7 @@
 		<meta charset="utf-8"/>
 		<title><%= page_title %></title>
 	
-    <%= stylesheet_link_tag "960" %>
-    <%= stylesheet_link_tag "layout" %>
-    <%= stylesheet_link_tag "bubble" %>
+    <%= stylesheet_link_tag "960", "layout", "bubble", "tipTip", :cache=>'all' %>
     
     <%= javascript_include_tag "jquery-1.4.1.min.js" %>
     <link rel="icon" type="image/png" href="/favicon.png">
@@ -117,20 +115,8 @@
   	</div>
   	
   	
-    <%= javascript_include_tag "jquery.watermark.js" %>
-    <%= javascript_include_tag "application.js" %>
-    <%= javascript_include_tag "drop_down" %>
-    <%= javascript_include_tag "jquery.tipTip.min" %>
-    <%= stylesheet_link_tag "tipTip" %>
-    
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $('.watermarked_title').watermark('watermark');
-      });
-     $(function(){
-       $(".tooltip").tipTip();
-     });
-     </script>
+    <%= javascript_include_tag "jquery.watermark.js", 
+    "application.js", "drop_down", "jquery.tipTip.min", :cache => 'all' %>
   </body>
 </html>
 
