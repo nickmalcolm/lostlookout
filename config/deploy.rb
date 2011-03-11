@@ -20,15 +20,17 @@ namespace :deploy do
   # Using Phusion Passenger
   task :stop do
     #run "for service in /home/#{user}/service/* ; do sv down $service ; done "
+    run "rake ts:stop"
   end
 
   task :start do
     #run "for service in /home/#{user}/service/* ; do sv up $service ; done "
+    run "rake ts:rebuild"
   end
 
   task :restart, :roles => [:app] do
     run "cd #{current_path} && touch tmp/restart.txt"
-    run "for service in /home/#{user}/service/* ; do sv restart $service ; done "
+    #run "for service in /home/#{user}/service/* ; do sv restart $service ; done "
   end
 
   task :symlink_configs do
