@@ -1,0 +1,142 @@
+<div class="full_green">
+  <div class="container_12">
+    
+    <div class="map_container">
+      <%= raw Cartographer::Header.new.to_s %>
+      <%= raw @map.to_html %>
+      <div id="map" data-listing-src="/listings" class="grid_12 front_page omega round">
+        <p>Loading map...</p>
+      </div>
+    
+      <div id="toggler" title="Expand">
+        <div class="clicker round_12">
+          <p class="symbol">&gt;</p>
+        </div>
+      </div>
+      <div id="sidebar" class="right_curve">
+        <div id="side_content">
+          <% if @listings && @listings.any? %>
+            <table class="listings">
+              <tbody>
+              <% @listings.each_with_index do |listing, i| %>
+                <% if i.even? %>
+                  <tr class="listing">
+                <% else%>
+                  <tr class="listing odd">
+                <% end %>
+                    <td class="listing">
+                      <table>
+                        <tr>
+                          <td class="title">
+                            <%= link_to listing.state_title, listing_path(listing) %>
+                          </td>
+                          <td rowspan="2">
+                            <% if listing.external_photos.any? %>
+                            <%= link_to image_tag(listing.external_photos.first.small_url), listing_path(listing) %>
+                            <% end %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                          <% if !listing.reward.nil? %>
+                            Reward: <%= number_to_currency listing.reward %><br />
+                          <% end %>
+                            <%= listing.lost_to_s %> <%= listing.time_ago %>.<br />
+                            <%= link_to "Zoom in on this", "#", :onClick => "zoomInOn(#{listing.latitude.to_f}, #{listing.longitude.to_f});" %>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          <% else %>
+            <h4>There isn't any lost or found stuff!</h4>
+            <p>
+               Why don't you be lucky number one, and <%= link_to "put something on the map!", new_listing_path %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+      
+      <div class="clear"></div>
+    </div>  
+      
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="container_12 home_middle dark">
+  <div class="grid_12 round">
+    <div class="grid_2 alpha">
+      <p class="intro gray_text" >
+        What's the deal?
+      </p>
+    </div>
+  
+    <div class="grid_3">
+      <h3 class="grid_3">1.&nbsp;&nbsp;Losing stuff</h3>
+      <p>
+        <img src="/images/sad_face.png" alt="Sad Face" />
+        Put your lost stuff on the map. Tell your mates, tell the world. Get people to look out for it.
+      </p>
+    </div>
+  
+    <div class="grid_3">
+      <h3 class="grid_3">2. Looking Out</h3>
+      <img src="/images/search.png" alt="Magnifying glass." />
+      <p>
+        Walking around town, to work, wherever. Keep an eye out, find lost stuff near you.
+      </p>
+    </div>
+  
+    <div class="grid_3 omega">
+      <h3 class="grid_3">3. Finding stuff</h3>
+      <img src="/images/happy_face.png" alt="Happy Face" />
+      <p>
+        Find a lost item and put it on the map. Tell your friends. Two degrees of separation later, it's reunited. Sweet as!
+      </p>
+    </div>
+    
+    <div class="grid_12 alpha omega sticker bottom_shadow" style="background: none">
+      <h3 class="top_curve"><%= link_to "Put something on the map...", new_listing_path %></h3>
+    </div>
+
+  </div>
+</div>
+
+<div class="clear"></div>
+<div class="container_12 home_bottom">
+  
+  <div class="grid_6">
+    <h2>Why use Lost Lookout?</h2>
+    <p>
+      Lost Lookout is the first* online lost and found service to put things on a map. Simple huh? But it makes a lot of difference! When people know you've lost something near them, they're more likely to keep an eye out for it.
+    </p>
+    <p>
+      When someone finds something, where do they go? Who do they tell? Lost Lookout is the new way to report things you've found, making it easier to return items. Don't stand there on the street looking sheepish when you find something. <%= link_to "Put it on Lost Lookout!", new_listing_path %>
+    </p>
+    <p>
+      *(we think!)
+    </p>
+  </div>
+  
+  <div class="grid_6">
+    <h2>Ready made posters!</h2>
+    <p>
+      Maximise exposure on your listing by printing out Lost Lookout's ready made posters. Simply <%= link_to "create a listing", new_listing_path %> and you'll be able to get a poster version, ready to print and post around your neighbourhood.
+    </p>
+  </div>
+  
+  <div class="grid_6">
+    <h2>Tell us your Lost Lookout story!</h2>
+    <p>
+      Did Lost Lookout reunite you with a loved and lost possession?<br />
+      Were you able to return something, and loved basking in warm fuzzies?<br />Tell us about it! Send us an email at <%= link_to "story@lostlookout.com", "mailto:story@lostlookout.com" %>.</p>
+  </div>
+
+  <div class="clear"></div>
+</div>
+
+<%= javascript_include_tag "map_shrinker" %>

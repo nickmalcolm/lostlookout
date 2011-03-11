@@ -1,0 +1,8 @@
+<div class="grid_12 alpha page_header dark round">
+  <h1>Edit your <%= @listing.lost ? "lost" : "found"%> item</h1>
+</div>
+<div class="clear"></div>
+
+<%= render 'form' %>
+
+<%= link_to 'Cancel', listings_path %>

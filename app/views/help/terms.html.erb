@@ -1,0 +1,96 @@
+<div class="grid_12 alpha page_header dark round">
+  <%= page_heading "Terms and Conditions" %>
+  <h1>Terms and Conditions</h1>
+</div>
+
+<script type="text/javascript">
+$(document).ready( function(){ 
+  $('h3').click(function(){
+    $(this).parent().find('p').toggle(200);
+  });
+});
+</script>
+<div class="clear"></div>
+
+<section>
+  <p>
+    <%= link_to "Shrink all answers", "#", :onClick=>"
+      $('#qa').find('p').hide(200)" %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= link_to "Show all answers", "#", :onClick=>"
+      $('#qa').find('p').show(200)" %>
+  </p>
+</section>
+
+<div id="qa">
+  
+  <section>
+    <h3>Applicability of these Terms</h3>
+    <p>
+      These terms and conditions apply to this website http://www.lostlookout.com. The phrase "these terms" is used to refer to all Terms and Conditions outlined in this document and any changes made to them. The phrase "this website" is used to refer to http://www.lostlookout.com and any of its subdomains or hosted content. The phrase "Lost Lookout" is used to refer to Nicholas Malcolm, creator of Lost Lookout. The term "listings" is used to refer to content hosted on this website regarding lost and found items.
+    </p>
+    <p>
+      Please read these terms carefully. By using this website you agree to these terms. If you don't accept them, you should cease using this website.
+  </section>
+
+  <section>
+    <h3>Intellectual Property Rights</h3>
+    <p>
+      Lost Lookout holds copyright and all other intellectual property rights in this website, except for images hosted by http://www.imgur.com, which fall under the Terms of Service found at http://imgur.com/tos, and the maps provided by Google Maps.
+    </p>
+    <p>
+      Any content uploaded to this website becomes the intellectual property of Lost Lookout.
+    </p>
+    <p>
+      You may reproduce, in any form, any listings hosted on this website for personal use only. For any other content you must seek that permission from that content's owner.
+    </p>
+  </section>
+ 
+  <section>
+    <h3>Accessing this website</h3>
+    <p>
+      Lost Lookout provides this website on an "as-is" and "as-available" basis. Lost Lookout reserves the right to remove or amend any and/or all content hosted on this website.
+    </p>
+    <p>
+      Some areas of the website will be or may become at any time accessible only to users who have created an account with this website.
+    </p>
+  </section> 
+  
+  <section>
+    <h3>Your use of this website</h3>
+    <p>
+      You agree to use this website in a way which complies with all applicable laws and regulations, and does not restrict the rights of, infringe upon the rights of, or reduce the enjoyment of any other user of this website.
+    </p>
+    <p>
+      You agree to use this website in a way which does not disrupt any of this website's servers, nor introduce harmful code to this website's servers or this website's users computers, nor create listings which are illegal, obscene, threatening, or otherwise objectionable to Lost Lookout, nor may you infringe on the rights of others, intellectual or otherwise, while using this website.
+    </p>
+    <p>
+      In addition you grant Lost Lookout the right to use, copy or distribute any content you do upload to this website, and agree that the aforementioned content is your intellectual property.
+    </p>
+  </section>
+  
+  
+    
+  <section>
+    <h3>Lost Lookout's Liability</h3>
+    <p>
+      Lost Lookout will not be held liable for any loss or damage (direct or indirect) you suffer as a result of using this website, relying upon this website, or any other circumstance arising which could be implied into these terms to the extent allowed by law.
+    </p>
+  </section>
+    
+  <section>
+    <h3>Privacy Statement</h3>
+    <p>
+      You agree to have read and accepted the content of our Privacy Statement, found at <%= link_to privacy_url.to_s, privacy_path %>
+    </p>
+  </section>  
+    
+  <section>
+    <h3>Governing Law</h3>
+    <p>
+      This website is governed by the law of New Zealand. When you access this website you submit to the jurisdiction of New Zealand's courts. This website's servers are hosted in the United States of America. To the extent granted by New Zealand and American law, you may also fall under the jurisdiction of the United States of America.
+    </p>
+  </section>
+
+
+</div>

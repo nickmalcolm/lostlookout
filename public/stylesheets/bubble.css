@@ -1,0 +1,14 @@
+.bubble, .bubble p{
+	font-size: 14px;
+	line-height: 18px;
+	padding: 0px;
+	margin-top: 0px;
+	min-width: 300px;
+}
+
+.bubble img{
+	float:right;
+	width: 60px;
+	height:60px;
+	padding-top: 10px;
+}

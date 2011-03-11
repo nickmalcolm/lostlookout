@@ -1,0 +1,24 @@
+<div class="grid_4">&nbsp;</div>
+<div class="grid_4 page_header dark round">
+  <h1>Log In</h1>
+</div>
+<div class="clear"></div>
+
+<div class="prefix_4 grid_4 suffix_4 alpha omega large_input">
+
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <p><%= f.label :email %><br />
+    <%= f.text_field :email, :class => "watermarked_title watermark alpha grid_4", :title => "Email Address" %></p>
+
+    <p><%= f.label :password %><br />
+    <%= f.password_field :password, :class => "watermarked_title watermark alpha grid_4", :title => "Password" %></p>
+
+    <% if devise_mapping.rememberable? -%>
+      <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+    <% end -%>
+
+    <p><%= f.submit "Sign in" %></p>
+  <% end %>
+
+  <%= render :partial => "devise/shared/links" %>
+</div>

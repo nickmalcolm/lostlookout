@@ -1,0 +1,86 @@
+<div class="grid_12 alpha omega dark round page_header">
+  <h1 style="float:left;"><%= @listing.state_title %></h1>
+  <p style="float:right; text-align: right">
+    <%= @listing.lost? ? "Belongs to " : "Found by " %>
+    <b>
+      <% if current_user == @listing.user %>
+        you. (<%= link_to "Edit", edit_listing_path(@listing) %>)
+      <% else %>
+        <%= link_to @listing.user.display_name, profile_path(@listing.user) %>
+      <% end %>  
+    </b>
+  </p>
+</div>
+
+<div class="grid_8 alpha">
+  <p>
+    Last seen at <%= @listing.last_seen_at.strftime("%l:%M%p on %A %e %b %Y") %>
+  </p>
+
+  <% if @listing.value %>
+    <p id="value">
+      <b>Value:</b>
+      <%= number_to_currency @listing.value %>
+    </p>
+  <% end %>
+  <% if @listing.reward %>
+    <p id="reward">
+      <b>Reward:</b>
+      <%= number_to_currency @listing.reward %>
+    </p>
+  <% end %>
+
+  <p>
+    <%=h  simple_format(h @listing.description) %>
+  </p>
+    
+  <p>
+    <em><%= @listing.reverse_geocode %></em>
+  </p>
+  
+  <p>&nbsp;</p>
+  
+  <% if current_user == @listing.user %>
+    <% if @listing.lost %>
+      <h3>Found it?</h3>
+      <p>
+        If you've found this or had it returned to you, <a href="#">mark it as found</a>.
+      </p>
+    <% else %>
+      <h3>Found the owner?</h3>
+      <p>
+        If you've found the owner, <a href="#">mark it as returned</a>.
+      </p>
+    <% end %>
+      <h3>Want a Ready Made Poster?</h3>
+      <p>You have a <%= link_to "Ready Made Poster", listing_poster_path(@listing), :target=>"_blank"%>  waiting for you, ready to be plastered around town!
+  <% else %>
+    <h3>I know something about this!</h3>
+    <p>
+      <% if @listing.lost %>
+        Have you found this, or seen it recently??
+      <% else %>
+        Is this yours, or do you know to whom this belongs??
+      <% end %> 
+      <a href="#">Get in contact with <%= @listing.user.display_name %>!</a>
+    </p>
+  <% end %>
+</div>
+<div>
+  <div class="photo_container">
+    <% if @photo %>
+      <%= link_to image_tag(@photo.medium_url, :class=>"dark round photo_preview"), @photo.raw_url%>
+    <% end %>
+  <div class="clear"></div>
+  </div>
+</div>
+
+<%= raw Cartographer::Header.new.to_s %>
+<%= raw @map.to_html %>
+<div id="map" data-listing-src="/listings" class="grid_12 alpha omega"></div>
+
+<div>
+  <p>
+    Listing created at <%= @listing.created_at.strftime("%l:%M%p %d/%m/%y") %>, and updated at <%= @listing.updated_at.strftime("%l:%M%p %d/%m/%y") %>
+  </p>
+</p>

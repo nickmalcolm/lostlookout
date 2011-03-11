@@ -1,0 +1,25 @@
+<%= form_for(@external_photo) do |f| %>
+  <% if @external_photo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@external_photo.errors.count, "error") %> prohibited this external_photo from being saved:</h2>
+
+      <ul>
+      <% @external_photo.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :listing_id %><br />
+    <%= f.text_field :listing_id %>
+  </div>
+  <div class="field">
+    <%= f.label :raw_url %><br />
+    <%= f.text_field :raw_url %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

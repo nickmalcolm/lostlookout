@@ -1,0 +1,57 @@
+<div class="grid_4">&nbsp;</div>
+<div class="grid_4 page_header center dark round">
+  <h1>Log In</h1>
+</div>
+<div class="clear"></div>
+
+<div class="prefix_2 grid_4 prefix_4 alpha login signin_up">
+
+  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    <p>
+    <%= f.text_field :email, :class => "watermarked_title watermark", :title => "Email Address", :size=>"29" %></p>
+
+    <p>
+    <%= f.password_field :password, :class => "watermarked_title watermark", :title => "Password" %></p>
+    <div class="clear"></div>
+    <p><%= f.submit "Log in", :style=>"float:right;" %></p>
+    <p>
+      <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+    </p>
+  <% end %>
+</div>
+
+<div class="grid_4 prefix_4 suffix_4 center">
+  <p class="">
+    <em>Don't have an account yet?</em>
+  </p>
+</div>
+
+<div class="grid_4">&nbsp;</div>
+<div class="grid_4 page_header center dark round">
+  <h1>Sign Up</h1>
+</div>
+<div class="clear"></div>
+
+<div class="grid_4 prefix_4 suffix_4 alpha omega signin_up">
+
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <p>
+    <%= f.text_field :email, :class => "watermarked_title watermark alpha grid_4 toolti", :title => "Email Address" %></p>
+
+    <p>
+    <%= f.password_field :password, :class => "watermarked_title watermark alpha grid_4", :title => "Password" %></p>
+    
+    <p>
+    <%= f.password_field :password_confirmation, :class => "watermarked_title watermark alpha grid_4", :title => "Password again"  %></p>
+
+    <p><%= f.submit "Sign up", :style=>"float:right;" %></p>
+    <div class="clear"></div>
+    <p>
+      <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %>
+    </p>
+  <% end %>
+
+</div>
+
+<div class="clear"></div>
+

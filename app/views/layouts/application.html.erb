@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8"/>
+		<title><%= page_title %></title>
+	
+    <%= stylesheet_link_tag "960" %>
+    <%= stylesheet_link_tag "layout" %>
+    <%= stylesheet_link_tag "bubble" %>
+    
+    <%= javascript_include_tag "jquery-1.4.1.min.js" %>
+    <link rel="icon" type="image/png" href="/favicon.png">
+  </head>
+
+	<body style="height: 100%">
+	
+    <div class="container_12 header">
+			
+      <div class="grid_3">
+        <%= link_to image_tag("/images/logo_shadow.png"), root_path %>
+      </div>
+        <div class="grid_9">
+          <div class="grid_9 alpha omega nav right">
+            <ul>
+      	  <% if user_signed_in? %>
+              <li class="dark round" id="dropdown_toggler">
+                <a href="#">My Lookout &#9660;</a>
+              </li>
+          <% else %>
+              <li class="dark round tooltip" title="Log in or Sign Up!">
+                <%= link_to "Log In", new_user_session_path %> 
+              </li>
+          <% end %>
+              <li class="dark round">
+                <%= link_to "Browse", listings_path %>
+              </li>
+              <!--
+              <li class="dark round">
+                <%= link_to "Community", forum_path %>
+              </li>
+              //-->
+              <li class="dark round">
+                <%= link_to "Help", help_path %>
+              </li>
+            </ul>
+          </div>
+        <% if current_user %>
+        <div class="prefix_5 grid_6 alpha omega" id="dd_cont">
+          <div class="grid_3 dropdown right_curve bottom_curve">
+            <ul>
+              <li>
+                Hey <%= current_user.display_name %>!
+              </li>
+              <li>
+                <%= link_to "New Listing", new_listing_path %>
+              </li>
+              <li>
+                <%= link_to "My Listings", dashboard_path %>
+              </li>
+              <li>
+                <%= link_to "Edit My Account", edit_user_registration_path(current_user) %>
+              </li>
+              <li>
+                <%= link_to "Logout", destroy_user_session_path %>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <div class="clear"></div>
+      
+    </div>
+    
+    <div class="container_12 search">
+        <%= form_tag search_listings_path, :method => :get, :class=>"grid_6" do %>
+          <p>
+            <%= text_field_tag :search, params[:search], :title=>"Search", :id=>"search", :class=>"watermarked_title watermark round grid_5 alpha", :type => "search", :size=>"large" %>
+            <%= submit_tag "Search", :name => nil, :class=>"button grid_1 alpha omega" %>
+          </p>
+        <% end %>
+      <h2 class="grid_6 tagline right">
+        Finding lost stuff near you
+      </h2>
+        <div class="clear"></div>
+    </div>
+  
+    <% if !is_home %>
+      <%= render :partial => "/layouts/errors" %>
+      <div class="container_12 content top_margin">  
+        <div class="grid_12">
+          <%= yield %>
+        </div>
+        <div class="clear"></div>
+      </div>
+    <% else %>  
+      <% if flash.any? %>
+        <div class="full_green">
+          <%= render :partial => "/layouts/errors" %>
+        </div>
+      <% end %>
+      <%= yield %>
+    <% end %>
+	  
+	  <div class="clear"></div>
+	
+  	<div class="container_12">
+  	  <div class="grid_12 dark footer top_curve">
+  	    <p>
+  	      <%= link_to "Terms & Conditions", terms_path %>&nbsp;&nbsp;&nbsp;
+  	      <%= link_to "Privacy Policy", privacy_path %>&nbsp;&nbsp;&nbsp;
+  	      <%= link_to "Help", help_path %>&nbsp;&nbsp;&nbsp;
+  	      &copy; Nick Malcolm 2011
+  	    </p>
+  	  </div>
+  	</div>
+  	
+  	
+    <%= javascript_include_tag "jquery.watermark.js" %>
+    <%= javascript_include_tag "application.js" %>
+    <%= javascript_include_tag "drop_down" %>
+    <%= javascript_include_tag "jquery.tipTip.min" %>
+    <%= stylesheet_link_tag "tipTip" %>
+    
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('.watermarked_title').watermark('watermark');
+      });
+     $(function(){
+       $(".tooltip").tipTip();
+     });
+     </script>
+  </body>
+</html>
+

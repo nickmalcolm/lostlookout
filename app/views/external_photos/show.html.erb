@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Listing:</b>
+  <%= @external_photo.listing_id %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @external_photo.url %>
+</p>
+
+
+<%= link_to 'Edit', edit_external_photo_path(@external_photo) %> |
+<%= link_to 'Back', external_photos_path %>

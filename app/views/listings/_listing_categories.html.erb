@@ -1,0 +1,9 @@
+<% if @listing_categories && @listing_categories.any? %>
+  <ul class="categories">
+    <% @listing_categories.each do |listing_category| %>
+      <li>
+          <%= listing_category.title %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

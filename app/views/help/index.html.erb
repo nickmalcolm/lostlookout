@@ -1,0 +1,71 @@
+<div class="grid_12 alpha page_header dark round">
+  <%= page_heading "Help Centre" %>
+  <h1>Help Centre</h1>
+</div>
+
+<script type="text/javascript">
+$(document).ready( function(){ 
+  $('h3').click(function(){
+    $(this).parent().find('p').toggle(200);
+  });
+});
+</script>
+<div class="clear"></div>
+
+<section>
+  <p>
+    <%= link_to "Shrink all answers", "#", :onClick=>"
+      $('#qa').find('p').hide(200)" %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= link_to "Show all answers", "#", :onClick=>"
+      $('#qa').find('p').show(200)" %>
+  </p>
+</section>
+
+<div id="qa">
+  
+  <section>
+    <h3>How can I make more people look for my lost item?</h3>
+    <p>
+      The best way is to tell people! E-mail the web address of your listing to friends and colleagues, share it on Facebook, post it to Twitter.
+    </p>
+    <p>
+      Alternatively use our <strong>Ready Made Poster</strong> service. After putting your lost item on the map you'll be able to get a printable version to put around your neighbourhood. These print best when you use the <%= link_to "Google Chrome", "http://www.google.com/chrome" %> or <%= link_to "Mozilla Firefox", "http://www.mozilla.com/firefox" %> browser.
+    </p>
+  </section>
+
+  <section>
+    <h3>I found something pretty valuable. What should I do?</h3>
+    <p>
+      A good idea would be to put it on Lost Lookout showing where and when you found it, and then handing it over to your local police. If a potential owner gets in contact, forward them on to the Police.
+    </p>
+    <p>  
+      After using Lost Lookout, Kiwis can use the <%= link_to "New Zealand Police Lost and Found service", "http://www.police.govt.nz/service/lostandfound/index.html" %>. 
+    </p>
+  </section>
+
+  <section>
+    <h3>What reward should I offer?</h3>
+    <p>
+      If you want to offer a reward, Lost Lookout only supports rewards with monetary value. That's not to say you couldn't bake someone a batch of cookies as a reward, and put the cookies' value in the reward box.
+    </p>
+    <p>
+      If you've lost something really valuable it might be a good idea to offer a decent reward. In today's world some people might not think warm fuzzies are a worthwhile reward for returning your precious item.
+    </p>
+  </section>
+
+  <section>
+    <h3>Someone won't give me my reward!</h3>
+    <p>
+      Sorry, but Lost Lookout doesn't enforce or require rewards to be put on lost items. They're basically good intentions! If a user puts a reward on a listing they don't have to give you it, but it'd be nice. If they are scrooges and refuse there are always the warm fuzzies from getting it returned in the first place!
+    </p>
+  </section>
+
+
+  <section>
+    <h3>I think a listing on here is a bit dodgy. Can I report it?</h3>
+    <p>
+      Sure! Send an email to <%= link_to "support@lostlookout.com", "mailto:support@lostlookout.com"%>.
+    </p>
+  </section>
+</div>

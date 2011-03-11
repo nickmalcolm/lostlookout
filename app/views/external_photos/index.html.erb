@@ -1,0 +1,25 @@
+<h1>Listing external_photos</h1>
+
+<table>
+  <tr>
+    <th>Listing</th>
+    <th>Url</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @external_photos.each do |external_photo| %>
+  <tr>
+    <td><%= external_photo.listing_id %></td>
+    <td><%= external_photo.url %></td>
+    <td><%= link_to 'Show', external_photo %></td>
+    <td><%= link_to 'Edit', edit_external_photo_path(external_photo) %></td>
+    <td><%= link_to 'Destroy', external_photo, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New External photo', new_external_photo_path %>

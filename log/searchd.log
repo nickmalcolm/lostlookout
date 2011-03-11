@@ -1,0 +1,43 @@
+[Thu Mar  3 00:42:47.966 2011] [15879] accepting connections
+[Thu Mar  3 01:03:42.905 2011] [15879] rotating indices (seamless=1)
+[Thu Mar  3 01:03:42.910 2011] [15879] rotating index 'listing_core': success
+[Thu Mar  3 01:03:42.910 2011] [15879] rotating finished
+[Thu Mar  3 01:17:33.647 2011] [15879] rotating indices (seamless=1)
+[Thu Mar  3 01:17:33.651 2011] [15879] rotating index 'listing_core': success
+[Thu Mar  3 01:17:33.651 2011] [15879] rotating finished
+[Sun Mar  6 21:39:44.878 2011] [ 2262] accepting connections
+[Sun Mar  6 23:47:28.043 2011] [ 2262] caught SIGTERM, shutting down
+[Sun Mar  6 23:47:28.043 2011] [ 2262] shutdown complete
+[Sun Mar  6 23:51:31.074 2011] [ 2655] accepting connections
+[Mon Mar  7 00:09:47.962 2011] [ 2655] caught SIGTERM, shutting down
+[Mon Mar  7 00:09:47.962 2011] [ 2655] shutdown complete
+[Mon Mar  7 18:15:32.499 2011] [ 3378] accepting connections
+[Mon Mar  7 18:35:43.526 2011] [ 3378] caught SIGTERM, shutting down
+[Mon Mar  7 18:35:43.527 2011] [ 3378] shutdown complete
+[Mon Mar  7 18:35:56.247 2011] [ 3580] accepting connections
+[Mon Mar  7 18:41:02.563 2011] [ 3580] caught SIGTERM, shutting down
+[Mon Mar  7 18:41:02.563 2011] [ 3580] shutdown complete
+[Mon Mar  7 18:41:13.157 2011] [ 3650] accepting connections
+[Tue Mar  8 00:51:03.155 2011] [ 3650] rotating indices (seamless=1)
+[Tue Mar  8 00:51:03.210 2011] [ 3650] rotating index 'listing_core': success
+[Tue Mar  8 00:51:03.210 2011] [ 3650] rotating finished
+[Tue Mar  8 01:16:57.074 2011] [ 3650] caught SIGTERM, shutting down
+[Tue Mar  8 01:16:57.075 2011] [ 3650] shutdown complete
+[Tue Mar  8 10:14:52.043 2011] [ 4672] accepting connections
+[Tue Mar  8 10:15:19.061 2011] [ 4672] caught SIGTERM, shutting down
+[Tue Mar  8 10:15:19.062 2011] [ 4672] shutdown complete
+[Tue Mar  8 17:36:51.850 2011] [ 6275] accepting connections
+[Tue Mar  8 17:50:53.616 2011] [ 6275] caught SIGTERM, shutting down
+[Tue Mar  8 17:50:53.616 2011] [ 6275] shutdown complete
+[Thu Mar 10 11:05:23.903 2011] [  363] accepting connections
+[Thu Mar 10 12:16:39.643 2011] [  363] caught SIGTERM, shutting down
+[Thu Mar 10 12:16:39.643 2011] [  363] shutdown complete
+[Thu Mar 10 12:22:57.997 2011] [ 1061] accepting connections
+[Thu Mar 10 14:49:10.931 2011] [ 1061] caught SIGTERM, shutting down
+[Thu Mar 10 14:49:10.931 2011] [ 1061] shutdown complete
+[Thu Mar 10 21:39:56.760 2011] [ 1702] accepting connections
+[Fri Mar 11 00:54:11.578 2011] [ 1702] caught SIGTERM, shutting down
+[Fri Mar 11 00:54:11.579 2011] [ 1702] shutdown complete
+[Fri Mar 11 11:49:58.824 2011] [ 2633] accepting connections
+[Fri Mar 11 12:15:47.123 2011] [ 2633] caught SIGTERM, shutting down
+[Fri Mar 11 12:15:47.123 2011] [ 2633] shutdown complete

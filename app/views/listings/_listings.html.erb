@@ -1,0 +1,75 @@
+<% if @listings && @listings.any? %>
+</div>
+<div class="clear"></div>  
+</div>
+<div class="container_16">
+
+  <div class="grid_16 table_header dark top_curve">
+    <div class="grid_7 alpha">
+      <%= form_tag request.path, :method =>"get" %>
+        <%= label_tag "sort", "Sort by",  :style=>"padding-left:10px;"%>
+        <%= select_tag "sort", options_for_select(sortable, params[:sort].to_i)  %>
+        <input type="hidden" id="search" name="search" value="<%= params[:search] %>"></input>
+        <%= submit_tag "Go", :name=>nil %>
+        </form>
+      </div>
+      <% if @order %>
+        <%= @order %>
+      <% end %>
+    <div class="grid_3">Last seen</div>
+    <div class="grid_2">Value</div>
+    <div class="grid_2">Reward</div>
+    <div class="grid_2 omega"></div>
+  </div>
+
+
+  <table class="listings grid_16">
+    <tbody> 
+    <% @listings.each_with_index do |listing, i| %>   
+      <tr data-url="<%= listing_path(listing) %>" class="listing <%= i.even? ? "" : "odd" %>">
+        <td class="grid_7 alpha">
+          <h3><%= link_to listing.state_title, listing_path(listing) %></h3>
+          <p>
+            <%= listing.reverse_geocode %>
+          </p>  
+          <div class="clear"></div>
+        </td>
+        <td class="grid_3">
+          <%= listing.lost_to_s+" "+listing.time_ago %>
+        <td class="grid_2">
+          <% if listing.lost? %>
+            <% if !listing.value.nil? %>
+              <%= number_to_currency listing.reward %><br />
+            <% else %>
+              Priceless!
+            <% end %>
+          <% end %>
+        </td>
+        <td class="grid_2">
+          <% if listing.lost? %>
+            <% if !listing.reward.nil? %>
+              <%= number_to_currency listing.reward %><br />
+            <% else %>
+              Warm fuzzies
+            <% end %>
+          <% end %>
+        </td>
+        <td class="grid_2 omega">
+          <% if listing.external_photos.any? %>
+          <div>
+              <%= link_to image_tag(listing.external_photos.first.small_url, :class=>"pad photo_preview omega"), listing_path(listing) %>
+          </div>
+          <% end %>
+          
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+</div>
+<div class="container_12">
+<div class="grid_12">
+<% else %>
+  No listings.
+<% end %>

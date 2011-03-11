@@ -1,0 +1,110 @@
+<%= form_for(@listing) do |f| %>
+  <% if @listing.errors.any? %>
+    <div id="error_explanation">
+      <h2>Sorry, you'll need to fix <%= pluralize(@listing.errors.count, "error") %>:</h2>
+
+      <ul>
+      <% @listing.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <p class="field switch">
+        <label class="cb-enable selected" id="lost"><span>Lost</span></label>
+        <label class="cb-disable" id="found"><span>Found</span></label>
+        <%= f.check_box :lost, :class => "checkbox" %>
+    </p>
+    &nbsp;&nbsp;<%= f.text_field :title, :style => "width:445px", :title=>"This will be the title for your listing, e.g. Sparkly Necklace" %>
+  </div>
+  
+  <div class="field grid_9 suffix_3 alpha">
+    <%= f.label :description %><br /><br />
+    <%= f.text_area :description, :class=>"grid_9 alpha omega", :title=>"Go into some detail about this item, what it looks like, where it's located, anything to help people find it or find the owner." %>
+  </div>
+ 
+  <div id="lost_only">
+    <div class="field grid_4 alpha">
+      <%= f.label :value, "Value $", :class=>"grid_1 alpha omega"%>
+      <%= f.text_field :value, :class=>"grid_3 alpha omega", :title => "Tell people how much it's worth, if you can. You can leave this blank and the value is Priceless!"%>
+    </div>
+    <div class="field grid_5 omega">
+      <%= f.label :reward, "Reward $" %>
+      <%= f.text_field :reward, :class=>"grid_3 alpha omega", :title => "Offering a reward can be an incentive for people to find it. You can leave this blank, and the reward is Warm Fuzzies!" %>
+    </div>
+    <div class="clear"></div>
+  </div>
+  
+  
+  <% f.fields_for :external_photos do |ep| %>
+    <div class="field grid_12 alpha omega">
+      <%= ep.label :raw_url, "Photo Url"%>
+      &nbsp;&nbsp;<%= ep.text_field :raw_url, :class=>"grid_4 alpha omega", :title => "If you have a photo hosted on imgur.com, you can paste it's address here." %>
+      <label class="how_to">&nbsp;
+        <a href="#image_help_dropdown" onClick="$('#image_help_dropdown').toggle(200)">
+          How do I upload a photo?
+        </a>
+      </label>
+    </div>
+    
+    <div id="image_help_dropdown" class="grid_12" style="display:none;">
+      <p>
+        You can attach a photo by using a free online service called imgur.com<br />
+        <%= image_tag "imgur.gif", :title=>"Copy the URL from the box labelled Direct Link", :style=>"float:right" %>
+      </p>
+      <ol>
+        <li>1) <a href="http://imgur.com" target="_blank">Go to imgur.com</a> (opens a new window)</li>
+        <li>2) Upload your photo (click "Computer")</li>
+        <li>3) Click "Start Upload"</li>
+        <li>4) Copy the <strong>DIRECT LINK</strong> (see image on the right)</li>
+        <li>5) Back here at Lost Lookout, paste the Direct Link in the box above, labelled "Photo URL"</li>
+        <li>6) Done!</li>
+      </ol>
+        
+      <p><a href="#image_help_dropdown" onClick="$('#image_help_dropdown').toggle(200)">
+        (Hide this message)</a></p>
+    </div>
+  <% end %>
+  <div class="clear"></div>
+
+  <div class="field">
+    <%= f.hidden_field :latitude, :id => "latitude" %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :longitude, :id => "longitude" %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :reverse_geocode %>
+  </div>
+  <div class="field grid_12 alpha omega">
+    <p>
+    <%= f.label :last_seen_at %>
+    <%= f.datetime_select :last_seen_at %><br />
+    </p>
+  </div>
+  
+  <div class="field" class="field grid_12 alpha omega">
+  <label for="location">Place the marker at &nbsp;</label>
+  <input type="text" id="location" value="<%= @listing.reverse_geocode %>" title="Type in the location of this item, or give a general area.">
+  </div>
+  
+  <div class="actions">
+    <% action = (request.path.eql? "/listings/new") ? "Create" : "Update" %>
+    <%= submit_tag action+" this Listing" %>
+  </div>
+<% end %>
+
+
+<script type="text/javascript">
+$(function(){
+  $("input").tipTip({defaultPosition: "right", maxWidth: "225px"});
+  $("textarea").tipTip({defaultPosition: "right", maxWidth: "225px"});
+});
+</script>
+
+<%= javascript_include_tag "checkbox" %>
+<%= stylesheet_link_tag "checkbox" %>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<%= javascript_include_tag "jquery.auto-geocoder" %>

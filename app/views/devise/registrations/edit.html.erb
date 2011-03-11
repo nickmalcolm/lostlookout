@@ -1,0 +1,66 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <p><%= f.label :email %>
+  <%= f.text_field :email, :title=>"Your email address" %></p>
+  
+  <p><%= f.label :first_name %>
+  <%= f.text_field :first_name, :title=>"Your first name. This appears on listings you create. If you leave it blank, we'll use the first part of your email address." %></p>
+  
+  <p><%= f.label :last_name %>
+  <%= f.text_field :last_name, :title=>"Your last name" %></p>
+  
+  <h3>Change my password</h3>
+
+  <p><%= f.label "New Password?" %> 
+  <%= f.password_field :password, :title=>"If you want to set a new password, type it in here" %></p>
+
+  <p><%= f.label "New Password (again)" %>
+  <%= f.password_field :password_confirmation, :title=>"If you want to set a new password, type it in here again to make sure you got it right" %></p>
+  
+  <h3>Change my homepage default location</h3>
+  
+  <div class="field">
+    <%= f.hidden_field :latitude, :id => "latitude" %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :longitude, :id => "longitude" %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :reverse_geocode %>
+  </div>
+  
+  <p>
+  <label for="location">Centre my map on&nbsp;</label>
+  <input type="text" id="location" value="<%= current_user.reverse_geocode %>" title="Type the address of where you want the map to be centered when you visit the homepage.">
+  </p>
+
+<h3>Save Changes</h3>
+
+  <p><b><%= f.label :current_password %></b>
+  <%= f.password_field :current_password, :title=>"What's your current password? Just to make sure you're allowed to make these changes." %></p>
+  
+  <p>
+    <%= f.submit "Save changes" %> 
+  <%= link_to "Don't save changes", :back %>
+  </p>
+<% end %>
+
+<div id="cancel">
+  <h4>
+    <a href="#cancel" onClick="$('#cancel_text').show(200)">Cancel my account</a>  
+  </h4>
+  <p id="cancel_text" class="hidden">
+    Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure you want to cancel your account?", :method => :delete %>.
+  </p>
+</div>
+
+<script type="text/javascript">
+$(function(){
+  $("input").tipTip({defaultPosition: "right", maxWidth: "225px"});
+});
+</script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<%= javascript_include_tag "jquery.auto-geocoder" %>

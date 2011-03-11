@@ -1,0 +1,17 @@
+<div class="grid_12 alpha page_header dark round">
+  <%= page_heading "Browse lost and found" %>
+  <h1>Browse lost and found</h1>
+</div>
+<div class="clear"></div>
+
+<%= render :partial => "listing_categories" %>
+
+<p>
+  <%= render :partial => "listings" %>
+</p>
+
+<br />
+
+<div class="grid_12 alpha omega sticker" style="background: none">
+  <h3 class="top_curve"><%= link_to "Put something on the map...", new_listing_path %></h3>
+</div>

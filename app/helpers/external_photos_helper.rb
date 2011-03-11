@@ -1,0 +1,2 @@
+module ExternalPhotosHelper
+end
