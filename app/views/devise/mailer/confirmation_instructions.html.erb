@@ -1,16 +1,14 @@
 
-  <%= image_tag "/images/128_icon.png", :size => "64x64", :style => "float:left;vertical-align: middle" %>
+  <%= image_tag "http://lostlookout.com/images/circle_logo.png", :size => "64x64", :style => "float:left;vertical-align: middle" %>
   Lost Lookout
    
       <p>Hi <%= @resource.nil? ? "there" : @resource.display_name %>!</p>
 
-      <p>Thanks for signing up to Lost Lookout. Please follow this link to confirm that this is your e-mail address:</p>
+      <p>Thanks for signing up to Lost Lookout! To get up and running please click on the link below to confirm that this is your e-mail address:</p>
 
       <p>
         <% if @resource %>
           <%= link_to confirmation_url(@resource, :confirmation_token => @resource.confirmation_token), confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>
-        <% else%>
-          <%= link_to "http://blah.com/token?123", "" %>
         <% end %>
       </p>
 
