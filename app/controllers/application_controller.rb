@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_timezone
 
   def set_timezone
+    flash.now[:notice] = "Hi! This site is still being developed, so there are still a few kinks to work out!"
     if current_user
       Time.zone = current_user.time_zone
     end
