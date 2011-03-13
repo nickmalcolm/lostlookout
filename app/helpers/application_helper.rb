@@ -1,3 +1,5 @@
+include TweetButton
+
 module ApplicationHelper
 
   def is_home

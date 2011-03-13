@@ -44,6 +44,9 @@ gem 'capistrano'
 gem 'yui-compressor'
 gem 'jammit'
 
+#For social media
+gem 'tweet-button'
+
 # To use debugger
 # gem 'ruby-debug'
 
