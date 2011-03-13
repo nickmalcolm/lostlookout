@@ -72,7 +72,7 @@
 <div class="grid_4 omega">
   <div class="photo_container grid_4 alpha omega dark round">
     <% if @photo %>
-      <%= link_to image_tag(@photo.medium_url, :class=>" photo_preview"), @photo.raw_url%>
+      <%= link_to image_tag(@photo.medium_url, :class=>" photo_preview", :alt => @listing.state_title, :title => @listing.state_title), @photo.raw_url%>
     <% else %>
       <em>No Photo!</em>
     <% end %>
