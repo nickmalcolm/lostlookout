@@ -8,7 +8,6 @@
     <%= include_stylesheets :common, :media => 'all' %>
     <%= include_javascripts :top %>
     
-    <%= javascript_include_tag "jquery-1.4.1.min.js" %>
     <link rel="icon" type="image/png" href="/favicon.png">
   </head>
 
@@ -116,10 +115,7 @@
   	</div>
   	
   	
-    
-    <%= include_javascripts :bottom %>
-    
-    <%= javascript_include_tag "flash_hider"%>
+    <%= javascript_includes %>
   </body>
 </html>
 

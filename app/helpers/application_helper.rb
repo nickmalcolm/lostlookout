@@ -20,4 +20,25 @@ module ApplicationHelper
     content_tag(:h1, content_for(:title){ text })
   end
   
+  def javascript_includes
+    p = request.path
+    p request.path == listings_path
+    scripts = [:bottom]
+    
+    #Homepage
+    if p == root_path
+      scripts << :home
+      
+    #if editing users or listings
+    elsif p =~ /(\/users\/e(.*))|(\/listings\/\d\/e(.*))/
+      scripts << :edit
+      
+    #Viewing listings
+    elsif p.starts_with?"/listings/"
+      scripts << :listings
+    end
+    
+    return include_javascripts *scripts
+  end
+  
 end

@@ -6,6 +6,14 @@ javascripts:
     - public/javascripts/application.js
     - public/javascripts/drop_down.js
     - public/javascripts/jquery.tipTip.min.js
+    - public/javascripts/flash_hider.js
+  home:
+    - public/javascripts/map_shrinker.js
+  listings:
+    - public/javascripts/twidget.js
+  edit:
+    - public/javascripts/checkbox.js
+    - public/javascripts/jquery.auto-geocoder.js
 
 stylesheets:
   common:
@@ -13,3 +21,5 @@ stylesheets:
     - public/stylesheets/layout.css
     - public/stylesheets/bubble.css
     - public/stylesheets/tipTip.css
+  listings:
+    - public/stylesheets/checkbox.css
