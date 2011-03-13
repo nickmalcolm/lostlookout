@@ -7,7 +7,7 @@ class Listing < ActiveRecord::Base
   accepts_nested_attributes_for :external_photos, :reject_if => lambda { |e| e[:raw_url].blank? }, :allow_destroy => true
   
   validates_presence_of :title
-  validates_length_of   :title, :within=>2..30
+  validates_length_of   :title, :within=>2..40
   
   validates_presence_of :user
   
@@ -45,9 +45,10 @@ class Listing < ActiveRecord::Base
     indexes :last_seen_at,    :sortable => true
   end
   
-  def state_title
+  #Defaults to no truncation
+  def state_title(length = title.length)
     s = self.lost_to_s
-    s += " "+self.title.truncate(23, :separator => ' ')
+    s += " "+self.title.truncate(length, :separator => ' ')
   end
   
   def lost_to_s
