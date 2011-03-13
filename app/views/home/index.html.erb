@@ -28,7 +28,7 @@
                       <table>
                         <tr>
                           <td class="title">
-                            <%= link_to listing.state_title, listing_path(listing) %>
+                            <%= link_to listing.state_title(20), listing_path(listing) %>
                           </td>
                           <td rowspan="2">
                             <% if listing.external_photos.any? %>
