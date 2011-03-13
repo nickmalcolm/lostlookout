@@ -380,7 +380,6 @@ input.large_input, .large_input input{
 }
 
 .photo_container{
-	margin-bottom: 20px;
 	text-align: center;
 	min-height: 300px;
 }
@@ -568,5 +567,5 @@ section h3:hover{
 }
 
 .social{
-	text-align: right;
+	text-align: center;
 }

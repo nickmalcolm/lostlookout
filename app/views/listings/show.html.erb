@@ -13,20 +13,11 @@
 </div>
 
 <div class="grid_8 alpha">
-  <div class="grid_5 alpha">
-    <h4><%= @listing.title %></h4>
-    <p>
-      Last seen at <%= @listing.last_seen_at.strftime("%l:%M%p on %A %e %b %Y") %>
-    </p>
-  </div>
-  <div class="grid_3 omega social">
-    <p>
-      <%= tweet_button :count => "horizontal", 
-          :text => @listing.twitter_text, :url => "http://lostlookout.com/listings/12345",
-          :via => "lostlookout"%>
-    <p>
-  </div>
-  <div class="clear"></div>
+  <p><strong><%= @listing.title %></strong></p>
+  <p>
+    Last seen at <%= @listing.last_seen_at.strftime("%l:%M%p on %A %e %b %Y") %>
+  </p>
+ 
 
   <% if @listing.value %>
     <p id="value">
@@ -77,15 +68,25 @@
     </p>
   <% end %>
 </div>
-<div>
-  <div class="photo_container grid_4 omega dark round">
+
+<div class="grid_4 omega">
+  <div class="photo_container grid_4 alpha omega dark round">
     <% if @photo %>
       <%= link_to image_tag(@photo.medium_url, :class=>" photo_preview"), @photo.raw_url%>
     <% else %>
       <em>No Photo!</em>
     <% end %>
-  <div class="clear"></div>
   </div>
+  <div class="grid_4 alpha omega social">
+    <h4 class="center">Spread the word:</h4>
+     <p>
+       <%= tweet_button :count => "horizontal", 
+           :text => @listing.twitter_text, :url => "http://lostlookout.com/listings/12345",
+           :via => "lostlookout"%>
+       <%= facebook_like %>
+     </p>
+   </div>
+<div class="clear"></div>
 </div>
 
 <div class="grid_12">
