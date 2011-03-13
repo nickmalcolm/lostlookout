@@ -106,6 +106,14 @@ class Listing < ActiveRecord::Base
     return "#{days.to_i} day"+(days.to_i == 1 ? "" : "s")+" ago"
   end
   
+  def twitter_text
+    locality_arr = reverse_geocode.split(',')
+    locality = locality_arr[0]+","+locality_arr[1]
+    text = state_title+" around #{locality}."+" Please RT and help me find "
+    text += lost ? "it" : "the owner"
+    text += "!"
+  end
+  
   def self.sortable
     [
       ["Title",               0],

@@ -381,7 +381,8 @@ input.large_input, .large_input input{
 
 .photo_container{
 	margin-bottom: 20px;
-	text-align: right;
+	text-align: center;
+	min-height: 300px;
 }
 
 .photo_preview{
@@ -564,4 +565,8 @@ section{
 
 section h3:hover{
 	cursor: pointer;
+}
+
+.social{
+	text-align: right;
 }
