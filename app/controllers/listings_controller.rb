@@ -12,7 +12,7 @@ class ListingsController < ApplicationController
       order = Listing.sortable_to_column(params[:sort])
     end
     
-    @listings = Listing.search "", :sort_mode => :extended, :order => order, :page => params[:page], :per_page => 1
+    @listings = Listing.search "", :sort_mode => :extended, :order => order, :page => params[:page], :per_page => 20
     
     respond_to do |format|
       format.html # index.html.erb
@@ -20,6 +20,8 @@ class ListingsController < ApplicationController
         render :json => @listings
       end
     end
+    
+    @meta_descr = "Browse all the lost and found stuff near you on Lost Lookout"
   end
   
   def search
@@ -30,9 +32,11 @@ class ListingsController < ApplicationController
       order = Listing.sortable_to_column(params[:sort])
     end
     
-    @listings = Listing.search params[:search], :sort_mode => :extended, :order => order, :page => params[:page], :per_page => 1
+    @listings = Listing.search params[:search], :sort_mode => :extended, :order => order, :page => params[:page], :per_page => 20
     @search_terms = params[:search]
     @count = @listings.count
+    
+    @meta_descr = "Search all the lost and found stuff near you on Lost Lookout"
   end
 
   # GET /listings/1
@@ -43,6 +47,8 @@ class ListingsController < ApplicationController
     @content_for_title = @listing.state_title
     
     @photo = @listing.external_photos.first
+    
+    @meta_descr = "Check out "+@listing.state_title+", put on Lost Lookout. Mapped based lost and found, finding lost stuff near you!"
     
     
     @map = initialize_map()

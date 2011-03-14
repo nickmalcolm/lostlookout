@@ -13,7 +13,13 @@ class HomeController < ApplicationController
       marker.icon = (l.lost ? @lost : @found)
       marker.info_window_url = listing_bubble_path(l)
       @map.markers << marker
+      
     end
+    
+    @meta_descr = "Finding lost stuff near you! This mapped based lost and found"+
+                  " helps you get reunited with your lost stuff by people looking around them,"+
+                  " and when you find stuff near you, get it quickly back to the owner!"
+    @meta_tags = "pet, jewellery, reunite, police"
     
   end
   
