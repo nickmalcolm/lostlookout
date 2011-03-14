@@ -108,7 +108,7 @@ class Listing < ActiveRecord::Base
   
   def twitter_text
     locality_arr = reverse_geocode.split(',')
-    locality = locality_arr[0]+","+locality_arr[1]
+    locality = locality_arr[0]+ (locality_arr[1] ? ","+locality_arr[1] : "")
     text = state_title+" around #{locality}."+" Please RT and help me find "
     text += lost ? "it" : "the owner"
     text += "!"

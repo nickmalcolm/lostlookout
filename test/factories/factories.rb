@@ -9,6 +9,9 @@ end
 Factory.define :listing do |l|
   l.title 'Listing X'
   l.state 'open'
+  l.latitude 0.0
+  l.longitude 0.0
+  l.reverse_geocode 'a'
   l.last_seen_at 1.hour.ago
   l.user { Factory(:user) }
 end

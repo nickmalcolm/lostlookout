@@ -53,5 +53,11 @@ class ListingTest < ActiveSupport::TestCase
       fail "Should not update a listing to have a negative value"
     end
   end
+  
+  test "tweet text" do
+    l = Factory(:listing, :title=>"I am a 40 character title. That is long!")
+    
+    assert l.twitter_text.length
+  end
     
 end
