@@ -40,7 +40,7 @@ GEM
     closure-compiler (1.0.0)
     date_validator (0.6.1)
       activemodel (~> 3.0.0)
-    devise (1.1.7)
+    devise (1.1.8)
       bcrypt-ruby (~> 2.1.2)
       warden (~> 1.0.2)
     erubis (2.6.6)
@@ -70,7 +70,7 @@ GEM
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
     polyglot (0.3.1)
-    rack (1.2.1)
+    rack (1.2.2)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
     rack-test (0.5.7)
@@ -116,6 +116,7 @@ GEM
       rack (>= 1.0.0)
     warden (1.0.3)
       rack (>= 1.0.0)
+    will_paginate (2.3.15)
     yui-compressor (0.9.4)
 
 PLATFORMS
@@ -134,4 +135,5 @@ DEPENDENCIES
   thinking-sphinx (= 2.0.2)
   tlsmail
   tweet-button
+  will_paginate
   yui-compressor

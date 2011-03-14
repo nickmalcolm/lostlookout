@@ -67,9 +67,26 @@
     </tbody>
   </table>
 </div>
+  
 </div>
+
 <div class="container_12">
 <div class="grid_12">
+
+  <div class="grid_7 alpha">
+    <div class="pagination_container">
+      <%= will_paginate @listings %>
+      <%= (page_entries_info @listings).html_safe %>
+    </div>
+  </div>
+  
+  <div class="grid_5 omega sticker" style="background: none">
+    <h3 class="top_curve"><%= link_to "Put something on the map...", new_listing_path %></h3>
+  </div>
 <% else %>
   No listings.
+  
+  <div class="grid_12 alpha omega sticker" style="background: none">
+    <h3 class="top_curve"><%= link_to "Put something on the map...", new_listing_path %></h3>
+  </div>
 <% end %>

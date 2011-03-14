@@ -12,7 +12,7 @@ class ListingsController < ApplicationController
       order = Listing.sortable_to_column(params[:sort])
     end
     
-    @listings = Listing.search "", :sort_mode => :extended, :order => order
+    @listings = Listing.search "", :sort_mode => :extended, :order => order, :page => params[:page], :per_page => 1
     
     respond_to do |format|
       format.html # index.html.erb
@@ -30,7 +30,7 @@ class ListingsController < ApplicationController
       order = Listing.sortable_to_column(params[:sort])
     end
     
-    @listings = Listing.search params[:search], :sort_mode => :extended, :order => order
+    @listings = Listing.search params[:search], :sort_mode => :extended, :order => order, :page => params[:page], :per_page => 1
     @search_terms = params[:search]
     @count = @listings.count
   end

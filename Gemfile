@@ -47,6 +47,8 @@ gem 'jammit'
 #For social media
 gem 'tweet-button'
 
+gem 'will_paginate'
+
 # To use debugger
 # gem 'ruby-debug'
 

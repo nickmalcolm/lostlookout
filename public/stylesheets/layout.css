@@ -569,3 +569,13 @@ section h3:hover{
 .social{
 	text-align: center;
 }
+
+.pagination_container{
+	padding-left: 10px;
+	padding-top: 20px;
+	font-size: 100%;
+}
+
+.pagination .disabled{
+	color: #AAA;
+}
