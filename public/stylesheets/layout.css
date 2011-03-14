@@ -531,6 +531,10 @@ label[for=location]{
 	line-height: 30px;
 }
 
+.listings{
+	padding-bottom: 10px;
+}
+
 .listings td{
 	padding-top: 10px;
 }
