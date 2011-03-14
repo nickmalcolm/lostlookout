@@ -15,10 +15,10 @@
       </div>
       <div id="sidebar" class="right_curve">
         <div id="side_content">
-          <% if @listings && @listings.any? %>
+          <% if @sidebar && @sidebar.any? %>
             <table class="listings">
               <tbody>
-              <% @listings.each_with_index do |listing, i| %>
+              <% @sidebar.each_with_index do |listing, i| %>
                 <% if i.even? %>
                   <tr class="listing">
                 <% else%>

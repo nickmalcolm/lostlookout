@@ -1,7 +1,10 @@
 class HomeController < ApplicationController
   
   def index
-    @listings = Listing.preload(:external_photos).limit(3).order("listings.created_at DESC")
+    @listings = Listing.preload(:external_photos).order("listings.created_at DESC")
+    
+    @sidebar = @listings[0..2]
+    
     
     @map = initialize_map()
     
