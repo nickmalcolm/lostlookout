@@ -2,7 +2,7 @@ class CreateForums < ActiveRecord::Migration
   def self.up
     create_table :forums do |t|
       t.string :title
-      t.title :description
+      t.string :description
 
       t.timestamps
     end
