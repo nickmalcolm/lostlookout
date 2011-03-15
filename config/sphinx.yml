@@ -1,5 +1,5 @@
 production:
   pid_file: /home/lostlookout/application/shared/tmp/searchd.pid
   searchd_file_path: /home/lostlookout/application/shared/db/sphinx
-  bin_path: /opt/bi
+  bin_path: /opt/bin
   port: 9314
