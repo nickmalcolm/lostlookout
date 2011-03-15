@@ -19,22 +19,29 @@ role :db,  "lostlookout.southgatelabs.com", :primary => true
 namespace :deploy do
   # Using Phusion Passenger
   task :stop do
-    #run "for service in /home/#{user}/service/* ; do sv down $service ; done "
-    run "rake ts:stop"
+    run "for service in /home/#{user}/service/* ; do sv down $service ; done "
   end
 
   task :start do
-    #run "for service in /home/#{user}/service/* ; do sv up $service ; done "
-    run "rake ts:rebuild"
+    run "for service in /home/#{user}/service/* ; do sv up $service ; done "
   end
 
   task :restart, :roles => [:app] do
-    run "cd #{current_path} && touch tmp/restart.txt"
-    #run "for service in /home/#{user}/service/* ; do sv restart $service ; done "
+    run "cd #{current_path} && RAILS_ENV=#{rails_env} rake thinking_sphinx:configure && touch tmp/restart.txt"
+    run "for service in /home/#{user}/service/* ; do sv restart $service ; done "
   end
 
   task :symlink_configs do
+    run %( cd #{release_path} &&
+        ln -nfs #{shared_path}/downloads #{release_path}/downloads &&
+        ln -nfs #{shared_path}/db/sphinx #{release_path}/db/sphinx 
+      )
+      #  &&
+      # RAILS_ENV=#{rails_env} rake thinking_sphinx:configure
   end
+  # task :bundle do
+  #   run "cd #{release_path} && RAILS_ENV=#{rails_env} bundle install --deployment"
+  # end
 
 end
 
