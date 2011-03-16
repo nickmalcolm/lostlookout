@@ -79,7 +79,7 @@
           <%= form_for email_owner_path, :url => email_owner_path do |f| %>
             <%= f.text_area :message, :name=>"message", :class => "contact_box grid_6 alpha omega" %>
             <p>
-            <strong>Important:</strong> When you get in contact with <%= @listing.user.display_name %> we will give them your email address so they can get in contact with you.
+            <strong>Important:</strong> We will give <%= @listing.user.display_name %> <strong>your email address</strong> when you send them this message. This is so they can easily reply to you.
               <%= f.submit "Send message"%>
             </p>
           <% end %>

@@ -80,9 +80,14 @@ class ListingsController < ApplicationController
       listing  = Listing.find(params[:id])
       recipient = listing.user
       message = params[:message]
-      Notifier.listing_contact(recipient, message, listing, current_user).deliver
-    
-      flash[:notice] = "Your email has been sent, thanks!"
+      
+      if !message.blank?
+        Notifier.listing_contact(recipient, message, listing, current_user).deliver
+        flash[:notice] = "Your email has been sent, thanks!"
+      else
+        flash[:notice] = "You need to write something in your message!"
+      end
+      
       redirect_to listing
     end
   end
