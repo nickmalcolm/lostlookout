@@ -41,6 +41,8 @@ class Listing < ActiveRecord::Base
     indexes :value,           :type => :integer, :sortable => true
     indexes :reward,          :type => :integer, :sortable => true
     indexes :reverse_geocode
+    indexes :created_at,      :sortable => true
+    indexes :user_id,         :type => :integer
     indexes :lost,            :sortable => true
     indexes :last_seen_at,    :sortable => true
   end
@@ -92,29 +94,32 @@ class Listing < ActiveRecord::Base
   
   def self.sortable
     [
-      ["Title",               0],
-      ["Lost first",          1], 
-      ["Found first",         2], 
-      ["Highest Value",       3], 
-      ["Highest Reward",      4], 
-      ["Most recently seen",  5]
+      ["Most recently added", 0],
+      ["Title",               1],
+      ["Lost first",          2], 
+      ["Found first",         3], 
+      ["Highest Value",       4], 
+      ["Highest Reward",      5], 
+      ["Most recently seen",  6]
     ]
   end
   
   def self.sortable_to_column(opt)
-    title = " title ASC"
-    case opt
-    when "0"
+    title = ", title ASC"
+    case opt.to_i
+    when 0
+      return "created_at DESC"+title
+    when 1
       return title
-    when "1"
+    when 2
       return "lost DESC"+title
-    when "2"
+    when 3
       return "lost ASC"+title
-    when "3"
+    when 4
       return "value DESC"+title
-    when "4"
+    when 5
       return "reward DESC"+title
-    when "5"
+    when 6
       return "last_seen_at DESC"+title
     end
   end

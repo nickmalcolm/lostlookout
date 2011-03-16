@@ -7,7 +7,7 @@ class ListingsController < ApplicationController
   def index
     @content_for_title = "Browse Lost and Found"
     
-    order = "title ASC"
+    order = Listing.sortable_to_column(0)
     if params[:sort]
       order = Listing.sortable_to_column(params[:sort])
     end
@@ -27,12 +27,12 @@ class ListingsController < ApplicationController
   def search
     @content_for_title = "Searching for "+params[:search]
     
-    order = "title ASC"
+    order = Listing.sortable_to_column(0)
     if params[:sort]
       order = Listing.sortable_to_column(params[:sort])
     end
     
-    @listings = Listing.search params[:search], :sort_mode => :extended, :order => order, :page => params[:page], :per_page => 20
+    @listings = Listing.search params[:search], :sort_mode => :extended, :order => "@weight DESC, "+order, :page => params[:page], :per_page => 20
     @search_terms = params[:search]
     @count = @listings.count
     
