@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   end
   
   def sent_enough_emails?
-    return emails_sent >= 0
+    return emails_sent >= 6
   end
   
 end
