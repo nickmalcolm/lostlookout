@@ -41,7 +41,6 @@ class ListingsController < ApplicationController
 
   # GET /listings/1
   def show
-    
     @listing = Listing.find(params[:id])
     
     @content_for_title = @listing.state_title
@@ -71,6 +70,21 @@ class ListingsController < ApplicationController
     @listing = Listing.preload(:external_photos).find(params[:listing_id])
     
     render :layout => false
+  end
+  
+  def email_owner
+    if current_user.sent_enough_emails?
+      flash[:notice] = "You've sent enough emails today sorry! Wait until tomorrow ;)"
+      redirect_to listing
+    else  
+      listing  = Listing.find(params[:id])
+      recipient = listing.user
+      message = params[:message]
+      Notifier.listing_contact(recipient, message, listing, current_user).deliver
+    
+      flash[:notice] = "Your email has been sent, thanks!"
+      redirect_to listing
+    end
   end
   
   def poster

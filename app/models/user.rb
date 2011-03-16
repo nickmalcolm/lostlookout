@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, 
                   :remember_me, :latitude, :longitude, :time_zone_str, :reverse_geocode,
-                  :display_name
+                  :display_name, :emails_sent
                   
   before_save :set_display_name
   
@@ -30,6 +30,10 @@ class User < ActiveRecord::Base
     rescue ArgumentError
       Time.zone
     end
+  end
+  
+  def sent_enough_emails?
+    return emails_sent >= 0
   end
   
 end

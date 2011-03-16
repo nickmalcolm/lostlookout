@@ -10,6 +10,8 @@ Lostspot::Application.routes.draw do
     resources :posts, :except => [:destroy]
   end
   
+  match "listings/:id/email_owner" => "listings#email_owner", :as => "email_owner", :via => :post
+  
   resources :posts, :except => [:destroy]
 
   resources :external_photos

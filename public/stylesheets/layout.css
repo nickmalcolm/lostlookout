@@ -588,3 +588,18 @@ section h3:hover{
 .pagination .disabled{
 	color: #AAA;
 }
+
+#user_contact {
+	display: none;
+}
+
+#user_contact h4{
+	margin-top: 0px;
+}
+#user_contact submit{
+	float: right;
+}
+
+#user_contact textarea{
+	height: 70px;
+}

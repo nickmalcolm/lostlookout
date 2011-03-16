@@ -1,18 +1,18 @@
+<%= render :partial => 'notifier/header' %>
 
-  <%= image_tag "http://lostlookout.com/images/circle_logo.png", :size => "64x64", :style => "float:left;vertical-align: middle" %>
-  Lost Lookout
+<%= render :partial => "notifier/security_notice" %>
    
-      <p>Hi <%= @resource.nil? ? "there" : @resource.display_name %>!</p>
+<p>Hi <%= @resource.nil? ? "there" : @resource.display_name %>!</p>
 
-      <p>Thanks for signing up to Lost Lookout! To get up and running please click on the link below to confirm that this is your e-mail address:</p>
+<p>Thanks for signing up to Lost Lookout! To get up and running please click on the link below to confirm that this is your e-mail address:</p>
 
-      <p>
-        <% if @resource %>
-          <%= link_to confirmation_url(@resource, :confirmation_token => @resource.confirmation_token), confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>
-        <% end %>
-      </p>
+<p>
+  <% if @resource %>
+    <%= link_to confirmation_url(@resource, :confirmation_token => @resource.confirmation_token), confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>
+  <% end %>
+</p>
 
-      <p>If you did not request a Lost Lookout account, please ignore this
-      message. You won't hear from us again.</p>
+<p>If you did not request a Lost Lookout account, please ignore this
+message. You won't hear from us again.</p>
 
-      <%= render :partial => 'signature' %>
+<%= render :partial => 'notifier/signature' %>

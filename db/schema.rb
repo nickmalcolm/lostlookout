@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110315105838) do
+ActiveRecord::Schema.define(:version => 20110316082444) do
 
   create_table "external_photos", :force => true do |t|
     t.integer  "listing_id"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(:version => 20110315105838) do
     t.string   "time_zone_str"
     t.string   "reverse_geocode"
     t.string   "display_name"
+    t.integer  "emails_sent",                         :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

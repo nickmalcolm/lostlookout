@@ -1,0 +1,25 @@
+<%= render :partial => 'header' %>
+
+<%= render :partial => "security_notice" %>
+
+<p>Hi <%= @recipient.display_name %>!</p>
+
+<p>Your listing on Lost Lookout has gotten some attention! One of our users, <%= @sender.display_name %>, has a message regarding your listing <%= @listing.state_title %>.
+</p>
+
+<p>They said:</p>
+
+<p style="border: 1px solid #AAA;padding: 10px;font-style:italic">
+  <%= @message %>
+</p>
+
+<p>
+  If you want to get in contact with them, email them at <%= @sender.email %>.
+</p>
+
+<p>
+  Note: Lost Lookout doesn't monitor or censor emails to you from other members. If you think their message is inappropriate do not hesitate to forward this message to <%= link_to "support@lostlookout.com", "mailto:support@lostlookout.com" %>.
+</p>
+  
+  
+<%= render :partial => "signature" %>

@@ -1,6 +1,8 @@
-<p>Hello <%= @resource.display_name %>!</p>
+<%= render :partial => 'notifier/header' %>
 
-<%= render :partial => "security_notice" %>
+<%= render :partial => "notifier/security_notice" %>
+
+<p>Hello <%= @resource.display_name %>!</p>
 
 <p>Your account (<%= @resource.email %>) has been locked due to an excessive amount of unsuccessful sign in attempts.</p>
 
@@ -8,4 +10,4 @@
 
 <p><%= link_to 'Unlock my account', unlock_url(@resource, :unlock_token => @resource.unlock_token) %></p>
 
-<%= render :partial => "signature" %>
+<%= render :partial => "notifier/signature" %>
