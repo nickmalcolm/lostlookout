@@ -21,5 +21,6 @@ stylesheets:
     - public/stylesheets/layout.css
     - public/stylesheets/bubble.css
     - public/stylesheets/tipTip.css
+    - public/stylesheets/forum.css
   listings:
     - public/stylesheets/checkbox.css

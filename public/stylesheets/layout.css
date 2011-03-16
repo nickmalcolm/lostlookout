@@ -342,10 +342,15 @@ h3{
 	margin: 10px;
 }
 
+.page_header h1{
+	float: left;
+}
+
 .page_header p{
 	margin-top: 20px;
 	margin-right: 10px;
 	float: right;
+	text-align: right;
 }
 
 .footer{

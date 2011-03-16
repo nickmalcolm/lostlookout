@@ -1,25 +1,27 @@
-<h1>Listing forums</h1>
+<div class="grid_12 alpha page_header dark round">
+  <%= page_heading "Community" %>
+  <h1>Community</h1>
+</div>
+<div class="clear"></div>
 
 <table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
 <% @forums.each do |forum| %>
   <tr>
-    <td><%= forum.title %></td>
-    <td><%= forum.description %></td>
-    <td><%= link_to 'Show', forum %></td>
-    <td><%= link_to 'Edit', edit_forum_path(forum) %></td>
-    <td><%= link_to 'Destroy', forum, :confirm => 'Are you sure?', :method => :delete %></td>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <h3><%= link_to forum.title, forum_path(forum) %></h3>
+          </td>
+        </tr>
+        <tr class="description">
+          <td>
+            <p><%= forum.description %></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>  
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Forum', new_forum_path %>

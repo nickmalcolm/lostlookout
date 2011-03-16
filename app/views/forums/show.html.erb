@@ -1,15 +1,30 @@
-<p id="notice"><%= notice %></p>
+<div class="grid_12 alpha page_header dark round">
+  <%= page_heading "Community - "+@forum.title %>
+  <h1><%= "Community - "+@forum.title %></h1>
+</div>
+<div class="clear"></div>
 
-<p>
-  <b>Title:</b>
-  <%= @forum.title %>
-</p>
-
-<p>
-  <b>Description:</b>
+<p class="description">
   <%= @forum.description %>
 </p>
 
+<table>
 
-<%= link_to 'Edit', edit_forum_path(@forum) %> |
-<%= link_to 'Back', forums_path %>
+<% @topics.each do |topic| %>
+  <tr>
+    <td class="grid_8 alpha">
+      <h3><%= link_to topic.title, forum_topic_path(@forum, topic) %></h3>
+    </td>
+    <td class="grid_4 omega">
+      <p>
+        Posted by <strong><%= topic.user.display_name %></strong> <%= time_ago_in_words(topic.created_at) %> ago.
+      </p>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<div class="grid_12 alpha omega sticker" style="background: none">
+  <h3 class="top_curve"><%= link_to "Start a new topic", new_forum_topic_path(@forum) %></h3>
+</div>
+

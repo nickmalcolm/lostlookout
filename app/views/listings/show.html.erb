@@ -1,6 +1,6 @@
 <div class="grid_12 alpha omega dark round page_header">
-  <h1 style="float:left;"><%= @listing.state_title(35) %></h1>
-  <p style="float:right; text-align: right">
+  <h1><%= @listing.state_title(35) %></h1>
+  <p>
     <%= @listing.lost? ? "Belongs to " : "Found by " %>
     <b>
       <% if current_user == @listing.user %>

@@ -35,7 +35,7 @@
           <div class="clear"></div>
         </td>
         <td class="grid_3">
-          <%= listing.lost_to_s+" "+listing.time_ago %>
+          <%= "#{listing.lost_to_s} #{time_ago_in_words(listing.created_at)} ago" %>
         <td class="grid_2">
           <% if listing.lost? %>
             <% if !listing.value.nil? %>

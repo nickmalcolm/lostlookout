@@ -1,10 +1,16 @@
 Lostspot::Application.routes.draw do
+
+  resources :forums, :only => [:index, :show] do
+    resources :topics
+  end
   
-  resources :posts
-
-  resources :topics
-
-  resources :forums
+  #match "/forums/:id/topics/new" => "topic#new"
+  
+  resources :topics, :only => [] do
+    resources :posts, :except => [:destroy]
+  end
+  
+  resources :posts, :except => [:destroy]
 
   resources :external_photos
 
@@ -28,7 +34,7 @@ Lostspot::Application.routes.draw do
   
   match "dashboard"     => "profiles#dashboard"
   
-  match "community"     =>  "forum#index", :as => "forum"
+  match "community"     =>  "forums#index"
   
   match "community/article/:id"  => "forum#show", :as => "forum_article"
   

@@ -4,7 +4,7 @@
     <%= link_to (image_tag @listing.external_photos.first.small_url, :alt => @listing.title, :style=>"float:right"), listing_path(@listing) %>
   <% end %>
     <strong><%= @listing.state_title %></strong><br />
-      <%= @listing.lost_to_s %> around <%= @listing.time_ago %><br />
+      <%= @listing.lost_to_s %> around <%= time_ago_in_words(@listing.created_at) %> ago<br />
       Near <% sp = @listing.reverse_geocode.split(",") %>
       <%= sp[0]+", "+sp[1] %><br />
       <%= link_to "Details", listing_path(@listing) %>&nbsp;&nbsp;<%= link_to "Zoom in on this", "#", :onClick => "zoomInOn(#{@listing.latitude.to_f}, #{@listing.longitude.to_f});" %><br />

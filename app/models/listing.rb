@@ -82,30 +82,6 @@ class Listing < ActiveRecord::Base
               :position => [self.latitude.to_f,self.longitude.to_f])
   end
   
-  def time_ago
-    seconds = (Time.now - self.last_seen_at)
-    
-    if seconds > 60
-      minutes = seconds/60
-    else
-      return "#{seconds.to_i} second"+(seconds.to_i == 1 ? "" : "s")+" ago"
-    end
-    
-    if minutes > 60
-      hours = minutes/60
-    else
-      return "#{minutes.to_i} minute"+(minutes.to_i == 1 ? "" : "s")+" ago"
-    end
-    
-    if hours > 24
-      days = hours/24
-    else
-      return "#{hours.to_i} hour"+(hours.to_i == 1 ? "" : "s")+" ago"
-    end
-    
-    return "#{days.to_i} day"+(days.to_i == 1 ? "" : "s")+" ago"
-  end
-  
   def twitter_text
     locality_arr = reverse_geocode.split(',')
     locality = locality_arr[0]+ (locality_arr[1] ? ","+locality_arr[1] : "")

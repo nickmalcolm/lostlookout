@@ -1,4 +1,7 @@
 class TopicsController < ApplicationController
+  
+  before_filter :find_forum
+  
   # GET /topics
   # GET /topics.xml
   def index
@@ -6,7 +9,6 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @topics }
     end
   end
 
@@ -17,18 +19,16 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @topic }
     end
   end
 
   # GET /topics/new
   # GET /topics/new.xml
   def new
-    @topic = Topic.new
+    @topic = @forum.topics.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @topic }
     end
   end
 
@@ -40,15 +40,14 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.xml
   def create
-    @topic = Topic.new(params[:topic])
+    @topic = @forum.topics.new(params[:topic])
+    @topic.user = current_user
 
     respond_to do |format|
       if @topic.save
         format.html { redirect_to(@topic, :notice => 'Topic was successfully created.') }
-        format.xml  { render :xml => @topic, :status => :created, :location => @topic }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @topic.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -61,23 +60,18 @@ class TopicsController < ApplicationController
     respond_to do |format|
       if @topic.update_attributes(params[:topic])
         format.html { redirect_to(@topic, :notice => 'Topic was successfully updated.') }
-        format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @topic.errors, :status => :unprocessable_entity }
       end
     end
   end
+  
+  
+  # your actions go here
 
-  # DELETE /topics/1
-  # DELETE /topics/1.xml
-  def destroy
-    @topic = Topic.find(params[:id])
-    @topic.destroy
+  private
 
-    respond_to do |format|
-      format.html { redirect_to(topics_url) }
-      format.xml  { head :ok }
+    def find_forum
+      @forum = Forum.find(params[:forum_id]) if params[:forum_id]
     end
-  end
 end

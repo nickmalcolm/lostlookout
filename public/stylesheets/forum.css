@@ -1,0 +1,14 @@
+.description{
+	font-style: italic;
+	color: #555;
+}
+
+textarea.post {
+	height: 200px;
+	margin: 0px;
+	margin-bottom: 20px;
+}
+
+.first_post{
+	background-color: #EFF5CB;
+}
