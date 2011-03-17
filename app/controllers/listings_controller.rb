@@ -167,7 +167,7 @@ class ListingsController < ApplicationController
     
     @listing.user = current_user
 
-    if @listing.open
+    if @listing.is_open
       respond_to do |format|
         if @listing.update_attributes(params[:listing])
           format.html { redirect_to(@listing, :notice => 'Listing was successfully updated.') }
