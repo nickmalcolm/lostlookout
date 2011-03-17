@@ -43,8 +43,12 @@ module ApplicationHelper
     return include_javascripts *scripts
   end
   
-  def facebook_like
+  def facebook_listing_like
     content_tag :iframe, nil, :src => "https://www.facebook.com/plugins/like.php?href=#{CGI::escape(request.url)}&layout=button_count&show_faces=false&width=100&height=80&action=recommend&font=arial&colorscheme=light", :style=>"width:130px;height:20px;float:right", :scrolling => 'no', :frameborder => '0', :allowtransparency => true, :id => :facebook_like
+  end
+  
+  def facebook_home_like
+    content_tag :iframe, nil, :src => "https://www.facebook.com/plugins/like.php?href=http%3A%2F%2Flostlookout.com&amp;layout=button_count&amp;show_faces=true&amp;width=450&amp;height=20&amp;action=like", :scrolling=>"no", :frameborder=>"0", :style=>"height: 22px; width: 100%", :allowtransparency=>"true", :id=>"facebook_home_like"
   end
   
 end
