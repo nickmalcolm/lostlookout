@@ -112,7 +112,7 @@
     <h4 class="center">Spread the word:</h4>
      <p>
        <%= tweet_button :count => "horizontal", 
-           :text => @listing.twitter_text, :url => "http://lostlookout.com/listings/12345",
+           :text => @listing.twitter_text, :url => "http://lostlookout.com/listings/"+@listing.id.to_s,
            :via => "lostlookout"%>
        <%= facebook_like %>
      </p>
