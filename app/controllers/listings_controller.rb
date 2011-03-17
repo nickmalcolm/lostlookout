@@ -46,7 +46,7 @@ class ListingsController < ApplicationController
     
     @photo = @listing.external_photos.first
     
-    @meta_descr = "Check out "+@listing.state_title+", put on Lost Lookout. Mapped based lost and found, finding lost stuff near you!"
+    @meta_descr = @listing.state_title+" on Lost Lookout. Mapped based lost and found, finding lost stuff near you!"
     
     
     @map = initialize_map()
