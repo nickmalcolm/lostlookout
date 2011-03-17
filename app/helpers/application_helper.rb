@@ -32,7 +32,7 @@ module ApplicationHelper
       scripts << :home
       
     #if editing users or listings
-    elsif p =~ /(\/users\/e(.*))|(\/listings\/\d\/e(.*))/
+    elsif p =~ /(\/users\/e(.*))|(\/listings\/\d\/e(.*))|(\/listings\/new)/
       scripts << :edit
       
     #Viewing listings

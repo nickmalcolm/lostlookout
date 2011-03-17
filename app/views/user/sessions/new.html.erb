@@ -13,7 +13,7 @@
     <p>
     <%= f.password_field :password, :class => "watermarked_title watermark", :title => "Password" %></p>
     <div class="clear"></div>
-    <p><%= f.submit "Log in", :style=>"float:right;" %></p>
+    <p><%= f.submit "Log in", :style=>"float:right;",  :disable_with => "Logging In..." %></p>
     <p>
       <%= link_to "Forgot your password?", new_password_path(resource_name) %>
     </p>
@@ -44,7 +44,7 @@
     <p>
     <%= f.password_field :password_confirmation, :class => "watermarked_title watermark alpha grid_4", :title => "Password again"  %></p>
 
-    <p><%= f.submit "Sign up", :style=>"float:right;" %></p>
+    <p><%= f.submit "Sign up", :style=>"float:right;", :disable_with => "Signing Up..." %></p>
     <div class="clear"></div>
     <p>
       <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %>
