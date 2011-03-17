@@ -185,7 +185,9 @@ class ListingsController < ApplicationController
       @listing = Listing.find(params[:id])	
       @listing.destroy
     end  
-      redirect_to root_path
+    respond_to do |format|
+      format.html { redirect_to(listings_url) }
+    end
   end
   
 end
