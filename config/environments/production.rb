@@ -11,6 +11,28 @@ Lostspot::Application.configure do
 
   # Specifies the header that your server uses for sending files
   config.action_dispatch.x_sendfile_header = "X-Sendfile"
+  
+  
+  #Email host
+  config.action_mailer.default_url_options = { :host => 'lostlookout.com' }
+  
+  #For Devise email
+  require 'tlsmail'    
+  Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.perform_deliveries = true
+  ActionMailer::Base.raise_delivery_errors = true
+  ActionMailer::Base.smtp_settings = {
+    :enable_starttls_auto => true,  
+    :address            => 'smtp.gmail.com',
+    :port               => 587,
+    :tls                  => true,
+    :domain             => 'lostlookout.com', #you can also use google.com
+    :authentication     => :plain,
+    :user_name          => 'team@lostlookout.com',
+    :password           => 'AWDser//w1'
+  }
 
   # For nginx:
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect'
