@@ -184,8 +184,8 @@ class ListingsController < ApplicationController
     if(current_user.id == 1) && (current_user.email.eql?"nick@itsnickmalcolm.com")
       @listing = Listing.find(params[:id])	
       @listing.destroy
+    end  
       redirect_to root_path
-    end
   end
   
 end
