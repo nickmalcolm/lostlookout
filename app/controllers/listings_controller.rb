@@ -138,6 +138,9 @@ class ListingsController < ApplicationController
   # GET /listings/1/edit
   def edit
     @listing = Listing.find(params[:id])
+    if @listing.external_photos.size.eql? 0
+      1.times { @listing.external_photos.build }
+    end
     
     if !@listing.is_open
       flash[:error] = "This listing is closed"
