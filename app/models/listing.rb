@@ -52,7 +52,10 @@ class Listing < ActiveRecord::Base
     s += " "+self.title.truncate(length, :separator => ' ')
     
     if !self.is_open
-      return "Reunited! - "+s
+      s = "Reunited! - "+s
+      if !length.eql? title.length
+        s.truncate(length+12, :separator => ' ')
+      end
     end
     
     s
