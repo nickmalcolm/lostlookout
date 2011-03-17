@@ -184,11 +184,6 @@ class ListingsController < ApplicationController
     
       @listing = Listing.find(params[:id])	
       @listing.destroy
-<<<<<<< HEAD
-    
-=======
-    end  
->>>>>>> 1956868756a836d456ccc322145424cf2e4da24d
     respond_to do |format|
       format.html { redirect_to(listings_url) }
     end
