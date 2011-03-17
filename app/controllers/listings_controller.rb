@@ -12,7 +12,7 @@ class ListingsController < ApplicationController
       order = Listing.sortable_to_column(params[:sort])
     end
     
-    @listings = Listing.search "", :sort_mode => :extended, :order => order, :page => params[:page], :per_page => 20
+    @listings = Listing.search "", :sort_mode => :extended, :order => order, :conditions => {:is_open => 1}, :page => params[:page], :per_page => 20
     
     respond_to do |format|
       format.html # index.html.erb
@@ -92,6 +92,20 @@ class ListingsController < ApplicationController
     end
   end
   
+  def close
+    listing  = Listing.find(params[:id])
+    if current_user.eql? listing.user
+      if listing.is_open
+        listing.close
+        flash[:notice] = "That's great to hear! This listing is now closed!"
+      else
+        flash[:notice] = "This listing is already closed."
+      end
+    end
+    
+    redirect_to listing
+  end
+    
   def poster
     @content_for_title = "Poster"
     
@@ -124,6 +138,12 @@ class ListingsController < ApplicationController
   # GET /listings/1/edit
   def edit
     @listing = Listing.find(params[:id])
+    
+    if !@listing.is_open
+      flash[:error] = "This listing is closed"
+      redirect_to @listing
+    end
+    
     @content_for_title = "Edit "+@listing.state_title
   end
 
@@ -147,23 +167,15 @@ class ListingsController < ApplicationController
     
     @listing.user = current_user
 
-    respond_to do |format|
-      if @listing.update_attributes(params[:listing])
-        format.html { redirect_to(@listing, :notice => 'Listing was successfully updated.') }
-      else
-        format.html { render :action => "edit" }
+    if @listing.open
+      respond_to do |format|
+        if @listing.update_attributes(params[:listing])
+          format.html { redirect_to(@listing, :notice => 'Listing was successfully updated.') }
+        else
+          format.html { render :action => "edit" }
+        end
       end
     end
   end
-
-  # DELETE /listings/1
-  # DELETE /listings/1.xml
-  def destroy
-    @listing = Listing.find(params[:id])
-    @listing.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(listings_url) }
-    end
-  end
+  
 end

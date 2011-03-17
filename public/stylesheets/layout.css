@@ -616,3 +616,11 @@ section h3:hover{
 	box-shadow: 1px 1px 4px #333333;
 	
 }
+
+h1.closed{
+	font-style: italic;
+}
+
+.closed{
+	color: #CCC;
+}

@@ -28,29 +28,34 @@ class Listing < ActiveRecord::Base
   end
   
   
-  def self.states
-    [ 'open', 'closed' ]
-  end
-
-  validates_inclusion_of :state, :in => self.states
-  
-  
   define_index do
     indexes :title,           :sortable => true
     indexes :description
     indexes :value,           :type => :integer, :sortable => true
     indexes :reward,          :type => :integer, :sortable => true
     indexes :reverse_geocode
+    indexes :is_open
     indexes :created_at,      :sortable => true
     indexes :user_id,         :type => :integer
     indexes :lost,            :sortable => true
     indexes :last_seen_at,    :sortable => true
   end
   
+  def close
+    self.is_open = false
+    self.save!
+  end
+  
   #Defaults to no truncation
   def state_title(length = title.length)
     s = self.lost_to_s
     s += " "+self.title.truncate(length, :separator => ' ')
+    
+    if !self.is_open
+      return "Reunited! - "+s
+    end
+    
+    s
   end
   
   def lost_to_s
@@ -64,7 +69,7 @@ class Listing < ActiveRecord::Base
   end
   
   def short_desc
-    #80 chars, no line returns, ... ending
+    #120 chars, no line returns, ... ending
     d = description.html_safe.gsub(/\r\n?/, " ")[0..120]+"..."
   end
   

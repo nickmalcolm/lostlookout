@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110316082444) do
+ActiveRecord::Schema.define(:version => 20110317080805) do
 
   create_table "external_photos", :force => true do |t|
     t.integer  "listing_id"
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(:version => 20110316082444) do
     t.integer  "listing_category_id"
     t.string   "reverse_geocode"
     t.float    "value"
-    t.string   "state",               :default => "open"
     t.float    "reward"
+    t.boolean  "is_open",             :default => true
   end
 
   create_table "posts", :force => true do |t|

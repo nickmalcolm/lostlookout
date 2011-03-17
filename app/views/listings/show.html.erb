@@ -1,10 +1,13 @@
-<div class="grid_12 alpha omega dark round page_header">
-  <h1><%= @listing.state_title(35) %></h1>
+<div class="grid_12 alpha omega dark round page_header <%= 'closed' if !@listing.is_open %>">
+  <h1><%= @listing.state_title(30) %></h1>
   <p>
     <%= @listing.lost? ? "Belongs to " : "Found by " %>
     <b>
       <% if current_user == @listing.user %>
-        you. (<%= link_to "Edit", edit_listing_path(@listing) %>)
+        you. 
+        <% if @listing.is_open %>
+          (<%= link_to "Edit", edit_listing_path(@listing) %>)
+        <% end %>
       <% else %>
         <%= link_to @listing.user.display_name, profile_path(@listing.user) %>
       <% end %>  
@@ -12,10 +15,13 @@
   </p>
 </div>
 
-<div class="grid_8 alpha">
-  <% if @listing.state_title.length > 35 %>
+<div class="grid_8 alpha <%= 'closed' if !@listing.is_open %>">
+  <% if !@listing.is_open %>
+    <h2 style="color:#000">This has been reunited with its owner!</h2>
+  <% end %>
+  <% if @listing.state_title.length > 30 %>
     <h3>
-      <%= @listing.title %>
+      <%= @listing.state_title %>
     </h3>
   <% end %>
   <p>
@@ -43,17 +49,22 @@
   </p>
   
   <% if current_user == @listing.user %>
-    <% if @listing.lost %>
-      <h3>Found it?</h3>
-      <p>
-        If you've found this or had it returned to you, <a href="#">mark it as found</a>.
-      </p>
-    <% else %>
-      <h3>Found the owner?</h3>
-      <p>
-        If you've found the owner, <a href="#">mark it as returned</a>.
-      </p>
+    <% if @listing.is_open %>
+      <% if @listing.lost %>
+        <h3>Found it?</h3>
+        <p>
+          If you've found this or had it returned to you, <a href="#">mark it as found</a>.
+        </p>
+      <% else %>
+        <h3>Found the owner?</h3>
+        <p>
+          <%= form_for close_listing_path, :url => close_listing_path(@listing) do |c| %>
+            If you've found the owner <%= c.submit "Mark this as returned!", :confirm => "Are you sure? You can't undo this..." %>
+          <% end %>
+        </p>
+      <% end %>
     <% end %>
+    
       <h3>Want a Ready Made Poster?</h3>
       <p>You have a <%= link_to "Ready Made Poster", listing_poster_path(@listing), :target=>"_blank"%>  waiting for you, ready to be plastered around town!
   <% else %>
@@ -80,7 +91,7 @@
             <%= f.text_area :message, :name=>"message", :class => "contact_box grid_6 alpha omega" %>
             <p>
             <strong>Important:</strong> We will give <%= @listing.user.display_name %> <strong>your email address</strong> when you send them this message. This is so they can easily reply to you.
-              <%= f.submit "Send message"%>
+              <%= f.submit "Send message", :disable_with => "Sending..."%>
             </p>
           <% end %>
         <% end %>
