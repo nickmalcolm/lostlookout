@@ -181,11 +181,13 @@ class ListingsController < ApplicationController
   end
   
   def destroy
-    if(current_user.id == 1) && (current_user.email.eql?"nick@itsnickmalcolm.com")
+    
       @listing = Listing.find(params[:id])	
       @listing.destroy
-    end  
-      redirect_to root_path
+    
+    respond_to do |format|
+      format.html { redirect_to(listings_url) }
+    end
   end
   
 end
