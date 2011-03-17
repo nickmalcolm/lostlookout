@@ -12,7 +12,6 @@ Lostspot::Application.routes.draw do
   
   match "listings/:id/email_owner" => "listings#email_owner", :as => "email_owner", :via => :post
   match "listings/:id/close" => "listings#close", :as => "close_listing", :via => :post
-  match "listings/:id/nickdestroy" => "listings#destroy", :via => :get
   
   resources :posts, :except => [:destroy]
 

@@ -41,7 +41,7 @@
                           <% if !listing.reward.nil? %>
                             Reward: <%= number_to_currency listing.reward %><br />
                           <% end %>
-                            <%= "#{listing.lost_to_s} #{time_ago_in_words(listing.created_at)} ago" %><br />
+                            <%= "#{listing.lost_to_s} #{time_ago_in_words(listing.last_seen_at)} ago" %><br />
                             <%= link_to "Zoom in on this", "#", :onClick => "zoomInOn(#{listing.latitude.to_f}, #{listing.longitude.to_f});" %>
                           </td>
                         </tr>
