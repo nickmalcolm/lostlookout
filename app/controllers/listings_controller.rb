@@ -1,7 +1,6 @@
 class ListingsController < ApplicationController
   
   before_filter :authenticate_user!, :only => [:new, :edit, :poster, :create, :update, :destroy]
-
   
   # GET /listings
   def index
@@ -178,6 +177,14 @@ class ListingsController < ApplicationController
           format.html { render :action => "edit" }
         end
       end
+    end
+  end
+  
+  def destroy
+    if(current_user.id == 1) && (current_user.email.eql?"nick@itsnickmalcolm.com")
+      @listing = Listing.find(params[:id])	
+      @listing.destroy
+      redirect_to root_path
     end
   end
   
