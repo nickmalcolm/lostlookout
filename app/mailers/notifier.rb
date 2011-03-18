@@ -12,5 +12,11 @@ class Notifier < ActionMailer::Base
     end
   end
   
+  def mail_admin(message)
+    mail(:to => "nick@lostlookout.com", :subject => "Update for #{DateTime.now.strftime('%A %e %b %Y')}") do |format|
+      @message = message
+      format.html
+    end
+  end  
   
 end
