@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   
   def index
-    @listings = Listing.preload(:external_photos).order("listings.created_at DESC")
+    @listings = Listing.where(:is_open => true).preload(:external_photos).order("listings.created_at DESC")
     
     @sidebar = @listings[0..2]
     
