@@ -171,6 +171,7 @@ textarea{
 }
 
 .dropdown{
+	background-color: #fff;
 	background-color: rgba(255,255,255,0.9);
 	position: relative;
 	top: -11px;
