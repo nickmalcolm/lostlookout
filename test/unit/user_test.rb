@@ -12,21 +12,29 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "user display names" do
-    u = Factory(:user, :first_name => "charles", :last_name => "xavier", :email => "charles.xavier@xmen.com")
-    
-    assert_equal "Charles Xavier", u.display_name
-    
-    u.first_name = nil
-    u.last_name = nil
-    u.save
-    u.reload
+    u = Factory(:user, :email => "charles.xavier@xmen.com")
     
     assert_equal "Charles.xavier", u.display_name
     
-    u.first_name = ""
-    u.last_name = ""
-    u.save
-    u.reload
+    u.display_name = ""
+    u.save!
+    
+    assert_equal "Charles.xavier", u.display_name
+    
+    u.display_name = "Nick"
+    u.save!
+    
+    assert_equal "Nick", u.display_name
+    
+    #This is the old way. Make sure it doesn't work.
+    u.first_name = "Nick"
+    u.last_name = "Malcolm"
+    u.save!
+    
+    assert_equal "Nick", u.display_name
+    
+    u.display_name = ""
+    u.save!
     
     assert_equal "Charles.xavier", u.display_name
     
