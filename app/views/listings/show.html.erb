@@ -53,7 +53,9 @@
       <% if @listing.lost %>
         <h3>Found it?</h3>
         <p>
-          If you've found this or had it returned to you, <a href="#">mark it as found</a>.
+          <%= form_for close_listing_path, :url => close_listing_path(@listing) do |c| %>
+            If you've found this or had it returned to you, <%= c.submit "Mark this as found!", :confirm => "Are you sure? You can't undo this..." %>
+          <% end %>
         </p>
       <% else %>
         <h3>Found the owner?</h3>
