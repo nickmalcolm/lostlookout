@@ -1,7 +1,28 @@
 require 'test_helper'
 
 class ListingTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
+  
+  test "a lost listing" do
+    u = Factory(:user)
+    begin
+      Listing.create!(:user => u, :title =>"Hello", :reverse_geocode => "a", :longitude => 1,
+                      :latitude => 1, :last_seen_at => 5.seconds.ago, :lost => true)
+    rescue StandardError => error
+      fail "Should be able to create lost listing: #{error}"
+    end
+  end
+  
+  test "a found listing" do
+    u = Factory(:user)
+    begin
+      Listing.create!(:user => u, :title =>"Hello", :reverse_geocode => "a", :longitude => 1,
+                      :latitude => 1, :last_seen_at => 5.seconds.ago, :lost => false)
+    rescue StandardError => error
+      fail "Should be able to create found listing: #{error}"
+    end
+  end
+  
+  
   test "date in the past" do
     assert Factory(:listing, :last_seen_at => 2.hours.ago)
   end
@@ -58,6 +79,43 @@ class ListingTest < ActiveSupport::TestCase
     l = Factory(:listing, :title=>"I am a 40 character title. That is long!")
     
     assert l.twitter_text.length
+  end
+  
+  test "a listing can have a length of <= 500 characters" do
+    u = Factory(:user)
+    
+    m = ""
+    
+    500.times {m+="a"}
+      
+    l = Listing.new(:user => u, :title =>"Hello", :reverse_geocode => "a", :longitude => 1,
+                    :latitude => 1, :last_seen_at => 5.seconds.ago, :lost => true,
+                    :description => m)
+                    
+    assert l.save!
+    
+    l.reload
+    assert_equal 500, l.description.length
+    
+  end
+  
+  test "listing description must be <= 500 characters" do 
+    u = Factory(:user)
+
+    m = ""
+
+    501.times {m+="a"}
+
+    l = Listing.new(:user => u, :title =>"Hello", :reverse_geocode => "a", :longitude => 1,
+                    :latitude => 1, :last_seen_at => 5.seconds.ago, :lost => true,
+                    :description => m)
+    
+    begin
+      l.save!
+      fail "Shouldn't be able to save with descr > 500"
+    rescue ActiveRecord::RecordInvalid
+      #Yay!
+    end
   end
     
 end

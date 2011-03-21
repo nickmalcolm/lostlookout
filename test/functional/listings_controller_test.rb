@@ -2,51 +2,91 @@ require 'test_helper'
 
 class ListingsControllerTest < ActionController::TestCase
   
-  setup do
-    @listing = Factory(:listing)
+  include Devise::TestHelpers
+  
+  #INDEX
+  
+  test "Can see own listings" do
+    
+      ThinkingSphinx::Test.start
+    a = Factory(:user)
+    
+    sign_in :user, a
+    
+    l = Factory(:listing, :title => "My bracelet", :user => a)
+    l.save!
+    
+    assert l.is_open
+    assert_equal 1, Listing.all.count
+    
+    ThinkingSphinx::Test.index
+  
+    get :index
+    assert_response :success
+    
+    #p (get :index).body
+    
+    assert_select ".listing", :count => 1
+    
+    
+    Factory(:listing, :title => "Two front teeth", :user => a, :lost => false)
+    
+    get :index
+    assert_response :success
+    assert_select ".listing", :count => 2
+    
+      ThinkingSphinx::Test.stop
   end
-
-  # test "should get index" do
-  #     get :index
-  #     assert_response :success
-  #     assert_not_nil assigns(:listings)
-  #   end
-  # 
-  #   test "should get new" do
-  #     get :new
-  #     assert_response :success
-  #   end
-  # 
-  #   test "should create listing" do
-  #     assert_difference('Listing.count') do
-  #       post :create, :listing => @listing.attributes
-  #     end
-  # 
-  #     assert_redirected_to listing_path(assigns(:listing))
-  #   end
-  # 
-  #   test "should show listing" do
-  #     get :show, :id => @listing.to_param
-  #     assert_response :success
-  #   end
-  # 
-  #   test "should get edit" do
-  #     get :edit, :id => @listing.to_param
-  #     assert_response :success
-  #   end
-  # 
-  #   test "should update listing" do
-  #     put :update, :id => @listing.to_param, :listing => @listing.attributes
-  #     assert_redirected_to listing_path(assigns(:listing))
-  #   end
-  # 
-  #   test "should destroy listing" do
-  #     assert_difference('Listing.count', -1) do
-  #       delete :destroy, :id => @listing.to_param
-  #     end
-  # 
-  #     assert_redirected_to listings_path
-  #   end
+  
+  
+  # test "Can see everyone's listings" do
+  #  
+  #    a = Factory(:user)
+  #    Factory(:listing, :title => "My bracelet", :user => a)
+  #    
+  #    sign_in :user, a
+  #    
+  #    get :index
+  #    assert_response :success
+  #    assert_select ".listing", :count => 1
+  #    
+  #    b = Factory(:user)
+  #    Factory(:listing, :title => "Two front teeth", :user => b, :lost => false)
+  #    
+  #    get :index
+  #    assert_response :success
+  #    assert_select ".listing", :count => 2
+  #  end
+  #  
+  #  test "Anon can see everyone's listings" do
+  #  
+  #    a = Factory(:user)    
+  #    b = Factory(:user)
+  #    Factory(:listing, :title => "My bracelet", :user => a)
+  #    Factory(:listing, :title => "Two front teeth", :user => b, :lost => false)
+  #    
+  #    get :index
+  #    assert_response :success
+  #    assert_select ".listing", :count => 2
+  #  end
+  #  
+  #  test "Closed listings are not shown on homepage" do
+  #    b = Factory(:user)
+  #    l = Factory(:listing, :title => "My bracelet", :user => b)
+  #    Factory(:listing, :title => "Two front teeth", :user => b, :lost => false)
+  #    
+  #    get :index
+  #    assert_response :success
+  #    assert_select ".listing", :count => 2
+  #    
+  #    l.close
+  #    
+  #    get :index
+  #    assert_response :success
+  #    assert_select ".listing", :count => 1
+  #  end
+  
+  #SHOW
   
   test "should show value" do
     listing = Factory(:listing, :value => 5.75)
@@ -55,4 +95,29 @@ class ListingsControllerTest < ActionController::TestCase
     #Plus 1 for the tr header row
     assert_select "value", "<b>Value:</b> $5.75"
   end
+  
+  
+  #Edit
+  
+  test "can update listing" do
+    a = Factory(:user)
+    
+    sign_in :user, a
+    
+    m = ""
+    
+    500.times {m+="a"}
+    
+    listing = Factory(:listing, :description => m, :user => a )
+    
+    m2 = ""
+    
+    500.times {m2+="b"}
+    
+    put :update, :listing_id => listing.id, :params => { :description => m2 }
+    assert_response :success
+    
+    
+  end
+  
 end
