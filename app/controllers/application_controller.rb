@@ -57,9 +57,9 @@ class ApplicationController < ActionController::Base
     cluster_icons << org
 
     @map.marker_clusterer_icons = cluster_icons
-    
+
     shadow_url = '/images/markers/shadow.png'
-    
+
     @lost = Cartographer::Gicon.new(
         :name => 'lost',
         :image_url => '/images/markers/redblank.png',
@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
         :anchor_y => 29,
         :info_anchor_x => 0,
         :info_anchor_x => 1)
-        
+    
      @found = Cartographer::Gicon.new(
         :name => 'found',
         :image_url => '/images/markers/greenblank.png',
@@ -88,7 +88,20 @@ class ApplicationController < ActionController::Base
      @map.icons << @lost
      @map.icons << @found
     return @map
-   end
+  end
   
+  def after_sign_in_path_for(resource_or_scope)
+    case resource_or_scope
+    when :user, User 
+      if current_user.sign_in_count.eql? 1
+        edit_user_registration_url(current_user)
+      else
+        super
+      end
+    else
+      super
+    end
+    
+  end
   
 end

@@ -1,5 +1,12 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="grid_12 alpha page_header dark round">
+  <h1>Edit <%= resource_name.to_s.humanize %></h1>
+</div>
+<div class="clear"></div>
 
+<% if current_user.sign_in_count.eql? 1%>
+<% end %>
+
+<div class="grid_6 omega">
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
 
@@ -17,8 +24,28 @@
   <p><%= f.label "New Password (again)" %>
   <%= f.password_field :password_confirmation, :title=>"If you want to set a new password, type it in here again to make sure you got it right" %></p>
   
-  <h3>Change my homepage default location</h3>
   
+  
+</div>
+
+
+<% if current_user.sign_in_count.eql? 1%>
+<div class="grid_6 alpha gray_text">
+  <h2>Welcome to Lost Lookout!</h2>
+  <p>
+    Thanks for signing up. To get the most out of Lost Lookout you should set a display name for your listings and default location for the homepage.
+  </p>
+  <p>
+    <strong><%= link_to "Nah, take me to the homepage!", root_path %></strong>
+  </p>
+  <p>
+    You can always come back later by clicking the "My Lookout" button above, and clicking "Edit My Account".
+  </p>
+</div>
+<% end %>
+
+<div class="grid_12 alpha omega">
+  <h3>Change my homepage default location</h3>
   <div class="field">
     <%= f.hidden_field :latitude, :id => "latitude" %>
   </div>
@@ -29,29 +56,33 @@
     <%= f.hidden_field :reverse_geocode %>
   </div>
   
-  <p>
   <label for="location">Centre my map on&nbsp;</label>
-  <input type="text" id="location" value="<%= current_user.reverse_geocode %>" title="Type the address of where you want the map to be centered when you visit the homepage.">
-  </p>
-
-<h3>Save Changes</h3>
-
-  <p><b><%= f.label :current_password %></b>
-  <%= f.password_field :current_password, :title=>"What's your current password? Just to make sure you're allowed to make these changes." %></p>
+  <input type="text" class="grid_8 alpha omega" id="location" value="<%= current_user.reverse_geocode %>" title="Type the address of where you want the map to be centered when you visit the homepage.">
   
-  <p>
-    <%= f.submit "Save changes" %> 
-  <%= link_to "Don't save changes", :back %>
-  </p>
-<% end %>
+</div>
 
-<div id="cancel">
-  <h4>
-    <a href="#cancel" onClick="$('#cancel_text').show(200)">Cancel my account</a>  
-  </h4>
-  <p id="cancel_text" class="hidden">
-    Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure you want to cancel your account?", :method => :delete %>.
-  </p>
+<div class="clear"></div>
+
+<div class="grid_12 alpha">
+  <h3>Save Changes</h3>
+
+    <p><b><%= f.label :current_password %></b>
+    <%= f.password_field :current_password, :title=>"What's your current password? Just to make sure you're allowed to make these changes." %></p>
+  
+    <p>
+      <%= f.submit "Save changes" %> 
+    <%= link_to "Don't save changes", :back %>
+    </p>
+  <% end %>
+
+  <div id="cancel">
+    <h4>
+      <a href="#cancel" onClick="$('#cancel_text').show(200)">Cancel my account</a>  
+    </h4>
+    <p id="cancel_text" class="hidden">
+      Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :confirm => "Are you sure you want to cancel your account?", :method => :delete %>.
+    </p>
+  </div>
 </div>
 
 <script type="text/javascript">
