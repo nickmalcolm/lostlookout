@@ -210,6 +210,10 @@ textarea{
 	color: #666;
 }
 
+.light_gray_text{
+	color: #AAA;
+}
+
 .nav a{
 	text-decoration: none;
 }
