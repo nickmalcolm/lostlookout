@@ -9,7 +9,11 @@ class Listing < ActiveRecord::Base
   validates_presence_of :title
   validates_length_of   :title, :within=>2..40
   
+  validates_length_of :description, :within=>0..500, :allow_nil => true
+  
   validates_presence_of :user
+  
+  validates_inclusion_of :lost, :in => [true, false]
   
   validates_presence_of :latitude
   validates_presence_of :longitude
@@ -65,12 +69,6 @@ class Listing < ActiveRecord::Base
     s = self.lost ? "Lost" : "Found"
   end
   
-  
-  def self.respond_with_json(params)
-    p params
-    Listing.all
-  end
-  
   def short_desc
     #120 chars, no line returns, ... ending
     d = description.html_safe.gsub(/\r\n?/, " ")[0..120]+"..."
@@ -80,8 +78,6 @@ class Listing < ActiveRecord::Base
     hash = Hash.new
     hash[:longitude] = longitude.to_f
     hash[:latitude] = latitude.to_f
-    hash[:html] =  self.html_description
-    hash[:popup] = false
     hash[:url] = "/listings/"+id.to_s
   
     return hash
