@@ -45,18 +45,17 @@
   <% end %>
 
   <p>
-    <%=h  simple_format(@listing.description) %>
+    <%= @listing.description %>
   </p>
   
   <% if current_user == @listing.user %>
     <% if @listing.is_open %>
       <% if @listing.lost %>
         <h3>Found it?</h3>
-        <p>
           <%= form_for close_listing_path, :url => close_listing_path(@listing) do |c| %>
-            If you've found this or had it returned to you, <%= c.submit "Mark this as found!", :confirm => "Are you sure? You can't undo this..." %>
+            <p>If you've found this or had it returned to you, <%= c.submit "Mark this as found!", :confirm => "Are you sure? You can't undo this..." %>
+          </p>
           <% end %>
-        </p>
       <% else %>
         <h3>Found the owner?</h3>
         <p>
@@ -67,8 +66,10 @@
       <% end %>
     <% end %>
     
-      <h3>Want a Ready Made Poster?</h3>
-      <p>You have a <%= link_to "Ready Made Poster", listing_poster_path(@listing), :target=>"_blank"%>  waiting for you, ready to be plastered around town!
+    <h3>Want a Ready Made Poster?</h3>
+    <p>
+      You have a <%= link_to "Ready Made Poster", listing_poster_path(@listing), :target=>"_blank"%>  waiting for you, ready to be plastered around town!
+    </p>
   <% else %>
     <h3>I know something about this!</h3>
     <p>
@@ -112,27 +113,29 @@
   </div>
   <div class="grid_4 alpha omega social">
     <h4 class="center">Spread the word:</h4>
-     <p>
-       <%= tweet_button :count => "horizontal", 
-           :text => @listing.twitter_text, :url => "http://lostlookout.com/listings/"+@listing.id.to_s,
-           :via => "lostlookout"%>
-       <%= facebook_listing_like %>
-     </p>
-   </div>
-<div class="clear"></div>
+    <p>
+      <%= tweet_button :count => "horizontal", 
+         :text => @listing.twitter_text, :url => "http://lostlookout.com/listings/"+@listing.id.to_s,
+         :via => "lostlookout"%>
+      <%= facebook_listing_like %>
+    </p>
+  </div>
+   
+   <div class="clear"></div>
 </div>
 
-<div class="grid_12">
-<h3>
-  <em><%= @listing.reverse_geocode %></em>
-</h3>
-<%= raw Cartographer::Header.new.to_s %>
-<%= raw @map.to_html %>
-<div id="map" data-listing-src="/listings" class="grid_12 alpha omega"></div>
+<div class="grid_12 alpha omega">
+  <h3>
+    <em><%= @listing.reverse_geocode %></em>
+  </h3>
+  <%= raw Cartographer::Header.new.to_s %>
+  <%= raw @map.to_html %>
+  <div id="map" data-listing-src="/listings" class="grid_12 alpha omega">
+  </div>
+</div>
 
 <div class="grid_12">
   <p>
     Listing created at <%= @listing.created_at.strftime("%l:%M%p %d/%m/%y") %>, and updated at <%= @listing.updated_at.strftime("%l:%M%p %d/%m/%y") %>
   </p>
-</p>
 </div>

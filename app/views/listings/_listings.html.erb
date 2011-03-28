@@ -9,13 +9,10 @@
       <%= form_tag request.path, :method =>"get" %>
         <%= label_tag "sort", "Sort by",  :style=>"padding-left:10px;"%>
         <%= select_tag "sort", options_for_select(sortable, params[:sort].to_i)  %>
-        <input type="hidden" id="search" name="search" value="<%= params[:search] %>"></input>
+        <input type="hidden" id="search_persist" name="search" value="<%= params[:search] %>" />
         <%= submit_tag "Go", :name=>nil %>
         </form>
       </div>
-      <% if @order %>
-        <%= @order %>
-      <% end %>
     <div class="grid_3">Last seen</div>
     <div class="grid_2">Value</div>
     <div class="grid_2">Reward</div>
@@ -66,8 +63,6 @@
     <% end %>
     </tbody>
   </table>
-</div>
-  
 </div>
 
 <div class="container_12">
