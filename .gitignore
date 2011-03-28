@@ -1,4 +1,5 @@
 config/development.sphinx.conf
+config/test.sphinx.conf
 db/sphinx/**
 tmp/**/*
 log/**
