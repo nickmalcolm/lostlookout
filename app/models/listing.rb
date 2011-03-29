@@ -26,6 +26,8 @@ class Listing < ActiveRecord::Base
   validates_numericality_of :reward, :allow_nil => true, :greater_than_or_equal_to => 0
   
   before_validation :initialize_external_photos, :on => :create
+  
+  after_create :email_admin
 
   def initialize_external_photos
     external_photos.each { |e| e.listing = self }
@@ -127,4 +129,12 @@ class Listing < ActiveRecord::Base
       return "last_seen_at DESC"+title
     end
   end
+  
+  def email_admin
+    m  = "<p>There's a new listing!</p>"
+    m += "#{user.display_name} made the listing <a href=\"http://lostlookout.com/listings/#{id}\">#{state_title}</a>"
+
+    Notifier.mail_admin(m).deliver
+  end
+  
 end
