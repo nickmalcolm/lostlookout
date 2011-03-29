@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :first_name, :last_name, :password, :password_confirmation, 
                   :remember_me, :latitude, :longitude, :time_zone_str, :reverse_geocode, 
-                  :emails_sent, :display_name
+                  :display_name
                   
   before_save :set_display_name
   

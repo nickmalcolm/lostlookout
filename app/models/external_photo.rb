@@ -9,6 +9,8 @@ class ExternalPhoto < ActiveRecord::Base
   
   before_save :clean_and_create_urls
   
+  attr_accessible :raw_url
+  
   def clean_and_create_urls
     wrong_url = "http://imgur.com/"
     url = self.raw_url

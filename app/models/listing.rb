@@ -27,7 +27,12 @@ class Listing < ActiveRecord::Base
   
   before_validation :initialize_external_photos, :on => :create
   
+  attr_accessible :lost, :title, :description, :longitude, :latitude, 
+                  :last_seen_at, :reverse_geocode, :value, :reward,
+                  :external_photos_attributes
+  
   after_create :email_admin
+  
 
   def initialize_external_photos
     external_photos.each { |e| e.listing = self }
