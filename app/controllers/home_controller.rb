@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
   
   def index
-    @content_for_title = "Home map"
     @listings = Listing.where(:is_open => true).preload(:external_photos).order("listings.created_at DESC")
     
     @sidebar = @listings[0..2]

@@ -15,7 +15,7 @@ module ApplicationHelper
   end
   
   def page_title
-    (@content_for_title + " on " if @content_for_title).to_s + 'Lost Lookout - Lost and Found Near You.'
+    (@content_for_title + " on " if @content_for_title).to_s + 'Lost Lookout - Map based Lost and Found Near You.'
   end
 
   def page_meta_descr
