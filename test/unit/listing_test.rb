@@ -5,8 +5,10 @@ class ListingTest < ActiveSupport::TestCase
   test "a lost listing" do
     u = Factory(:user)
     begin
-      Listing.create!(:user => u, :title =>"Hello", :reverse_geocode => "a", :longitude => 1,
+      l = Listing.create(:title =>"Hello", :reverse_geocode => "a", :longitude => 1,
                       :latitude => 1, :last_seen_at => 5.seconds.ago, :lost => true)
+      l.user = u
+      l.save!
     rescue StandardError => error
       fail "Should be able to create lost listing: #{error}"
     end
@@ -15,8 +17,10 @@ class ListingTest < ActiveSupport::TestCase
   test "a found listing" do
     u = Factory(:user)
     begin
-      Listing.create!(:user => u, :title =>"Hello", :reverse_geocode => "a", :longitude => 1,
+      l = Listing.create(:title =>"Hello", :reverse_geocode => "a", :longitude => 1,
                       :latitude => 1, :last_seen_at => 5.seconds.ago, :lost => false)
+      l.user = u
+      l.save!
     rescue StandardError => error
       fail "Should be able to create found listing: #{error}"
     end
@@ -88,10 +92,11 @@ class ListingTest < ActiveSupport::TestCase
     
     500.times {m+="a"}
       
-    l = Listing.new(:user => u, :title =>"Hello", :reverse_geocode => "a", :longitude => 1,
+    l = Listing.new(:title =>"Hello", :reverse_geocode => "a", :longitude => 1,
                     :latitude => 1, :last_seen_at => 5.seconds.ago, :lost => true,
                     :description => m)
-                    
+    
+    l.user = u                
     assert l.save!
     
     l.reload
