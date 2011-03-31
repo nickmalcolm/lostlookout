@@ -32,7 +32,10 @@ class Listing < ActiveRecord::Base
                   :external_photos_attributes
   
   after_create :email_admin
-  
+
+  def to_param
+      "#{id}-#{state_title.parameterize}"
+  end
 
   def initialize_external_photos
     external_photos.each { |e| e.listing = self }
