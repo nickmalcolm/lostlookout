@@ -115,7 +115,7 @@
     <h4 class="center">Spread the word:</h4>
     <p>
       <%= tweet_button :count => "horizontal", 
-         :text => @listing.twitter_text, :url => "http://lostlookout.com/listings/"+@listing.id.to_s,
+         :text => @listing.twitter_text, :url => listing_url(@listing),
          :via => "lostlookout"%>
       <%= facebook_listing_like %>
     </p>
@@ -126,11 +126,12 @@
 
 <div class="grid_12 alpha omega">
   <h3>
-    <em><%= @listing.reverse_geocode %></em>
+    <em class="gray_text">Look out around</em> <em><%= @listing.reverse_geocode %></em>
   </h3>
   <%= raw Cartographer::Header.new.to_s %>
   <%= raw @map.to_html %>
   <div id="map" data-listing-src="/listings" class="grid_12 alpha omega">
+    Loading the lost and found map...
   </div>
 </div>
 

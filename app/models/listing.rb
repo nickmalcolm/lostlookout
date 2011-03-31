@@ -36,6 +36,10 @@ class Listing < ActiveRecord::Base
   def to_param
       "#{id}-#{state_title.parameterize}"
   end
+  
+  def meta_tags
+    "#{state_title.parameterize}".split(/-/).join(", ")
+  end
 
   def initialize_external_photos
     external_photos.each { |e| e.listing = self }

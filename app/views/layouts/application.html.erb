@@ -8,8 +8,8 @@
     <%= include_stylesheets :common, :media => 'all' %>
     <%= include_javascripts :top %>
     
-    <meta name="keywords" content="lost, found, map, <%= @meta_tags %>" />
-    <meta name="description" content="<%= @meta_descr %>" />
+    <meta name="keywords" content="<%= page_meta_tags %>" />
+    <meta name="description" content="<%= page_meta_descr %>" />
     <meta name="author" content="Nick Malcolm" />
     
     <meta name="google-site-verification" content="PaWRhi-XbE7q_qhgtXaAZE39BV2KFFuc3L4QsupaLHw" />
@@ -30,7 +30,7 @@
     <div class="container_12 header">
 			
       <div class="grid_3">
-        <%= link_to image_tag("logo_shadow.png"), root_path %>
+        <%= link_to image_tag("logo_shadow.png", :alt=>"Lost Lookout - map based lost and found", :title=>"Lost Lookout - map based lost and found"), root_path %>
       </div>
         <div class="grid_9">
           <div class="grid_9 alpha omega nav right">
@@ -44,7 +44,7 @@
                 <%= link_to "Log In", new_user_session_path %> 
               </li>
           <% end %>
-              <li class="dark round">
+              <li class="dark round tooltip" title="More lost and found!">
                 <%= link_to "Browse", listings_path %>
               </li>
               <!--
@@ -52,7 +52,7 @@
                 <%= link_to "Community", forums_path %>
               </li>
               //-->
-              <li class="dark round">
+              <li class="dark round tooltip" title="Get help!">
                 <%= link_to "Help", help_path %>
               </li>
             </ul>
@@ -88,7 +88,7 @@
     <div class="container_12 search">
         <%= form_tag search_listings_path, :method => :get, :class=>"grid_6" do %>
           <p>
-            <%= text_field_tag :search, params[:search], :title=>"Search", :id=>"search", :class=>"watermarked_title watermark round grid_5 alpha", :type => "search", :size=>"large" %>
+            <%= text_field_tag :search, params[:search], :title=>"Search by keyword and/or location", :id=>"search", :class=>"watermarked_title watermark round grid_5 alpha", :type => "search", :size=>"large" %>
             <%= submit_tag "Search", :name => nil, :class=>"button grid_1 alpha omega" %>
           </p>
         <% end %>

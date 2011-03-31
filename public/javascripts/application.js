@@ -9,4 +9,5 @@ $(document).ready(function(){
 });
 $(function(){
   $(".tooltip").tipTip();
+	$(".tooltip_right").tipTip({defaultPosition: "right"})
 });

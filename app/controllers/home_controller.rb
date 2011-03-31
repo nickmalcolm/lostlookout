@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   
   def index
+    @content_for_title = "Home map"
     @listings = Listing.where(:is_open => true).preload(:external_photos).order("listings.created_at DESC")
     
     @sidebar = @listings[0..2]
@@ -16,10 +17,8 @@ class HomeController < ApplicationController
       
     end
     
-    @meta_descr = "Finding lost stuff near you! This map based lost and found"+
-                  " helps you get reunited with your lost stuff by people looking around them,"+
-                  " and when you find stuff near you, get it quickly back to the owner!"
-    @meta_tags = "pet, jewellery, reunite, police"
+    @meta_tags = ""
+    @listings.each {|t| @meta_tags += t.title.split(/ /).join(", "); @meta_tags += ", "}
     
   end
   

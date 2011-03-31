@@ -5,6 +5,7 @@ class ListingsController < ApplicationController
   # GET /listings
   def index
     @content_for_title = "Browse Lost and Found"
+    @meta_descr = "Browse everything lost and found near you on map based Lost Lookout."
     
     order = Listing.sortable_to_column(0)
     if params[:sort]
@@ -13,19 +14,20 @@ class ListingsController < ApplicationController
     
     @listings = Listing.search "", :sort_mode => :extended, :order => order, :conditions => {:is_open => 1}, :page => params[:page], :per_page => 20
     
+    @meta_tags = ""
+    @listings.each {|t| @meta_tags += t.meta_tags+", "}
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json do
         render :json => @listings
       end
     end
-    
-    @meta_descr = "Browse all the lost and found stuff near you on Lost Lookout"
   end
   
   def search
     @content_for_title = "Searching for "+params[:search]
-    
+    @meta_descr = @content_for_title+" on map based lost and found, Lost Lookout."
     order = Listing.sortable_to_column(0)
     if params[:sort]
       order = Listing.sortable_to_column(params[:sort])
@@ -35,7 +37,8 @@ class ListingsController < ApplicationController
     @search_terms = params[:search]
     @count = @listings.count
     
-    @meta_descr = "Search all the lost and found stuff near you on Lost Lookout"
+    @meta_tags = params[:search].parameterize.split(/-/).join(", ")+", "
+    @listings.each {|t| @meta_tags += t.meta_tags+", "}
   end
 
   # GET /listings/1
@@ -47,6 +50,7 @@ class ListingsController < ApplicationController
     @photo = @listing.external_photos.first
     
     @meta_descr = @listing.state_title+" on Lost Lookout. Mapped based lost and found, finding lost stuff near you!"
+    @meta_tags = @listing.meta_tags
     
     
     @map = initialize_map()

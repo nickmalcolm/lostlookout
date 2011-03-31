@@ -15,7 +15,22 @@ module ApplicationHelper
   end
   
   def page_title
-    (@content_for_title + " on " if @content_for_title).to_s + 'Lost Lookout - Finding Lost Stuff Near You.'
+    (@content_for_title + " on " if @content_for_title).to_s + 'Lost Lookout - Lost and Found Near You.'
+  end
+
+  def page_meta_descr
+    default = "Lost or Found something? Put it on the Lost Lookout map. "+
+              "Let people know where to look out for your lost items, or"+
+              "let owners quickly and easily reward you. Lost Lookout - "+
+              "finding lost stuff near you!"
+                  
+    (@meta_descr.nil? ? default : @meta_descr ).to_s
+  end
+  
+  def page_meta_tags
+    default = "map, lost, found, "
+                  
+    default += (@meta_tags.nil? ? default : @meta_tags).to_s
   end
 
   def page_heading(text)
