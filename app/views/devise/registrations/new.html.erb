@@ -2,28 +2,29 @@
   <%= devise_error_messages! %>
 </div>
 
-<div class="grid_4 alpha">&nbsp;</div>
-<div class="grid_4 page_header dark round">
+<div class="grid_4">&nbsp;</div>
+<div class="grid_4 page_header center dark round">
   <h1>Sign Up</h1>
 </div>
 <div class="clear"></div>
 
-<div class="prefix_4 grid_4 suffix_4 alpha omega large_input">
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-    
+<div class="grid_4 prefix_4 suffix_4 alpha omega signin_up">
 
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
     <p>
-    <%= f.text_field :email, :class => "watermarked_title watermark alpha grid_4", :title => "Email address" %></p>
-  
+    <%= f.text_field :email, :class => "watermarked_title watermark alpha grid_4 toolti", :title => "Email Address" %></p>
+
     <p>
     <%= f.password_field :password, :class => "watermarked_title watermark alpha grid_4", :title => "Password" %></p>
-
+    
     <p>
-    <%= f.password_field :password_confirmation, :class => "watermarked_title watermark alpha grid_4", :title => "Confirm Password"  %></p>
+    <%= f.password_field :password_confirmation, :class => "watermarked_title watermark alpha grid_4", :title => "Password again"  %></p>
 
+    <p><%= f.submit "Sign up", :style=>"float:right;", :disable_with => "Signing Up..." %></p>
     <div class="clear"></div>
-    <p><%= f.submit "Sign up" %></p>
+    <p>
+      <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %>
+    </p>
   <% end %>
 
-  <%= render :partial => "devise/shared/links" %>
 </div>
