@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110401083926) do
+ActiveRecord::Schema.define(:version => 20110401085739) do
 
   create_table "external_photos", :force => true do |t|
     t.integer  "listing_id"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20110401083926) do
   end
 
   create_table "posts", :force => true do |t|
-    t.string   "text"
+    t.text     "content"
     t.integer  "user_id"
     t.integer  "topic_id"
     t.datetime "created_at"
@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(:version => 20110401083926) do
     t.integer  "forum_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "text"
     t.integer  "user_id"
   end
 
