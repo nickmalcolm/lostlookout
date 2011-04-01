@@ -22,5 +22,7 @@ stylesheets:
     - public/stylesheets/bubble.css
     - public/stylesheets/tipTip.css
     - public/stylesheets/forum.css
+    - public/stylesheets/formtastic.css
+    - public/stylesheets/formtastic_changes.css
   listings:
     - public/stylesheets/checkbox.css
