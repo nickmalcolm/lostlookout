@@ -49,6 +49,8 @@ gem 'tweet-button'
 
 gem 'will_paginate'
 
+gem 'formtastic'
+
 # To use debugger
 # gem 'ruby-debug'
 
