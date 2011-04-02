@@ -1,22 +1,15 @@
 class TopicsController < ApplicationController
   
+  before_filter :authenticate_user!, :only => [:new, :edit, :create, :update]
   before_filter :find_forum
-  
-  # GET /topics
-  # GET /topics.xml
-  def index
-    @topics = Topic.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-    end
-  end
 
   # GET /topics/1
   # GET /topics/1.xml
   def show
     @topic = Topic.find(params[:id])
-
+    if current_user
+      @topic.posts.new(:user => current_user)
+    end
     respond_to do |format|
       format.html # show.html.erb
     end
@@ -26,6 +19,7 @@ class TopicsController < ApplicationController
   # GET /topics/new.xml
   def new
     @topic = @forum.topics.new
+    @topic.posts.build(:user => current_user)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,10 +36,14 @@ class TopicsController < ApplicationController
   def create
     @topic = @forum.topics.new(params[:topic])
     @topic.user = current_user
-
+    p = @topic.posts.first
+    p.user = current_user
+    p.topic = @topic
+    p.save!
+    
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to(@topic, :notice => 'Topic was successfully created.') }
+        format.html { render :action => "show", :notice => "Topic successfully created" }
       else
         format.html { render :action => "new" }
       end
@@ -56,10 +54,16 @@ class TopicsController < ApplicationController
   # PUT /topics/1.xml
   def update
     @topic = Topic.find(params[:id])
-
+    p = @topic.posts
+    if(p.user.nil?)
+      p.user = current_user
+      p.topic = @topic
+      p.save!
+    end
+    
     respond_to do |format|
       if @topic.update_attributes(params[:topic])
-        format.html { redirect_to(@topic, :notice => 'Topic was successfully updated.') }
+        format.html { redirect_to(:action => "show", :notice => 'Topic was successfully updated.') }
       else
         format.html { render :action => "edit" }
       end

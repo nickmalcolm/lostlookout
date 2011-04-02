@@ -10,10 +10,16 @@
   <p class="grid_1 alpha name">
     <%= @topic.user.display_name %>
   </p>
-  <p class="grid_10 omega">
-    <%= @topic.text %>
-  </p>
+  <% @topic.posts.each do |p| %>
+    <p class="grid_10 omega">
+      <%= p.content %>
+    </p>
+  <% end %>
 </div>
+
+<% semantic_form_for [@forum, @topic] do |form| %>
+  <%= form.inputs :content, :for => :posts %>
+<% end %>
 
 
 <%= link_to 'Back', forum_path(@topic.forum) %>

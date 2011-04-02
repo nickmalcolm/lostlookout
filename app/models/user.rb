@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :trackable, :validatable
          
   has_many :listings
+  has_many :topics
+  has_many :posts
   
   validates_numericality_of :latitude, :allow_nil => true
   validates_numericality_of :longitude, :allow_nil => true

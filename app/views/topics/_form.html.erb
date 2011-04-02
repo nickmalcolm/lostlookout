@@ -1,25 +1,5 @@
-<%= form_for([:forum, @topic]) do |f| %>
-  <% if @topic.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
-
-      <ul>
-      <% @topic.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field grid_12">
-    <%= f.label :title %>
-    <%= f.text_field :title, :class=>"grid_7" %>
-  </div>
-  <div class="field grid_8 suffix_4">
-    <%= f.label :text, "Message:" %>
-    <%= f.text_area :text, :class=>"grid_8 post", :title=>"Enter your message" %>
-  </div>
-  <div class="actions grid_12">
-    <%= f.submit "Create new Topic!" %>
-  </div>
+<% semantic_form_for [@forum, @topic] do |form| %>
+    <%= form.inputs :title %>
+    <%= form.inputs :content, :for => :posts %>
+    <%= form.buttons %>
 <% end %>

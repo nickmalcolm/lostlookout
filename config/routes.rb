@@ -1,13 +1,8 @@
 Lostspot::Application.routes.draw do
 
   resources :forums, :only => [:index, :show] do
-    resources :topics
-  end
-  
-  #match "/forums/:id/topics/new" => "topic#new"
-  
-  resources :topics, :only => [] do
-    resources :posts, :except => [:destroy]
+    resources :topics, :except => [:destroy] do
+    end
   end
   
   match "listings/:id/email_owner" => "listings#email_owner", :as => "email_owner", :via => :post
