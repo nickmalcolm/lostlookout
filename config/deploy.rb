@@ -57,3 +57,6 @@ after "deploy:restart" do
 end
 
 require 'bundler/capistrano'
+
+        require './config/boot'
+        require 'hoptoad_notifier/capistrano'

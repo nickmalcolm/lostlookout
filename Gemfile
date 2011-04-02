@@ -51,6 +51,9 @@ gem 'will_paginate'
 
 gem 'formtastic'
 
+#For error reporting
+gem 'hoptoad_notifier'
+
 # To use debugger
 # gem 'ruby-debug'
 
