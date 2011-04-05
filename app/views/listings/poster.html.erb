@@ -67,7 +67,7 @@
                 <p>
                   <%= @listing.state_title(30) %><br />
                   <span class="email"><%= current_user.email %></span><br />
-                  <strong>lostlookout.com</strong><%= listing_path(@listing) %>
+                  <strong>lostlookout.com</strong><%= listing_path(@listing).split(/-/)[0] %>
                 </p>
               </td>
             <% end %>
