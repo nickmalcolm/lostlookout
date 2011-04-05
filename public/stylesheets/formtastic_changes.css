@@ -29,14 +29,11 @@ form.formtastic fieldset input {
 	float: right;  
 }
 
-form.formtastic fieldset input[type="submit"].button {
-	background: #555;
-	color: #fff;
-	padding: 6px 15px;
+form.formtastic fieldset input[type="submit"] {
+	margin-right: 0px;
 }
 
 form.formtastic fieldset.buttons li{
-	margin-right: 20px;
 	float:right;
 }
 
@@ -45,8 +42,4 @@ form.formtastic fieldset > ol > li label {
 	color: #444;
 	text-shadow: 1px 1px 1px #CCCCCC;
 	filter: dropshadow(color=#CCCCCC, offx=1, offy=1);
-}
-
-form.formtastic fieldset a{
-	float: right;
 }
