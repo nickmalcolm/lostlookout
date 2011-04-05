@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110401085739) do
+ActiveRecord::Schema.define(:version => 20110405123020) do
 
   create_table "external_photos", :force => true do |t|
     t.integer  "listing_id"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20110401085739) do
   end
 
   create_table "listings", :force => true do |t|
-    t.boolean  "lost"
+    t.boolean  "lost",                :default => true
     t.string   "title"
     t.text     "description"
     t.string   "longitude"
