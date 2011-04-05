@@ -12,3 +12,41 @@ The following style may be *conditionally* included for improved support on olde
 form.formtastic fieldset ol li fieldset legend { margin-left: -6px;}
 
 --------------------------------------------------------------------------------------------------*/
+
+
+
+form.formtastic fieldset > ol > li.string input, form.formtastic fieldset > ol > li.password input, form.formtastic fieldset > ol > li.numeric input, form.formtastic fieldset > ol > li.email input, form.formtastic fieldset > ol > li.url input, form.formtastic fieldset > ol > li.phone input, form.formtastic fieldset > ol > li.search input{
+	width: 69%;
+}
+
+form.formtastic fieldset input {
+	border-radius:5px;
+	border: #C9FF70 1px solid;
+	box-shadow:inset 0px 0px 2px #777;
+	background:#fff;
+	padding: 5px 5px;
+	margin-right: 10px;
+	float: right;  
+}
+
+form.formtastic fieldset input[type="submit"].button {
+	background: #555;
+	color: #fff;
+	padding: 6px 15px;
+}
+
+form.formtastic fieldset.buttons li{
+	margin-right: 20px;
+	float:right;
+}
+
+form.formtastic fieldset > ol > li label {
+	text-align: right;
+	color: #444;
+	text-shadow: 1px 1px 1px #CCCCCC;
+	filter: dropshadow(color=#CCCCCC, offx=1, offy=1);
+}
+
+form.formtastic fieldset a{
+	float: right;
+}

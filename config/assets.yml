@@ -17,6 +17,7 @@ javascripts:
 
 stylesheets:
   common:
+    - public/stylesheets/reset.css
     - public/stylesheets/960.css
     - public/stylesheets/layout.css
     - public/stylesheets/bubble.css

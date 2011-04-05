@@ -2,29 +2,35 @@
   <%= devise_error_messages! %>
 </div>
 
-<div class="grid_4">&nbsp;</div>
-<div class="grid_4 page_header center dark round">
-  <h1>Sign Up</h1>
-</div>
-<div class="clear"></div>
 
-<div class="grid_4 prefix_4 suffix_4 alpha omega signin_up">
-
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-    <p>
-    <%= f.text_field :email, :class => "watermarked_title watermark alpha grid_4 tooltip", :title => "Email Address" %></p>
-
-    <p>
-    <%= f.password_field :password, :class => "watermarked_title watermark alpha grid_4", :title => "Password" %></p>
-    
-    <p>
-    <%= f.password_field :password_confirmation, :class => "watermarked_title watermark alpha grid_4", :title => "Password again"  %></p>
-
-    <p><%= f.submit "Sign up", :style=>"float:right;", :disable_with => "Signing Up..." %></p>
-    <div class="clear"></div>
-    <p>
+<div class="grid_7 alpha">
+  <div class="grid_7 alpha page_header center dark round">
+    <h1>Sign Up</h1>
+  </div>
+  <%= semantic_form_for(@user, :url => session_path(resource_name)) do |user| %>
+    <%= user.inputs do %>
+      <%= user.input :email %>
+      <%= user.input :password %>
+      <%= user.input :password_confirmation, :label =>"Confirm", :required=>true %>
+    <% end %>
+    <%= user.buttons do %>
       <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %>
-    </p>
+      <%= user.commit_button :label => "Sign up" %>
+    <% end %>
   <% end %>
-
 </div>
+
+
+
+<div class="grid_5 omega">
+  <div class="grid_5 page_header center dark round">
+    <h1>Already signed up?</h1>
+  </div>
+  <p class="gray_text no_pad">
+    If you already have an account with Lost Lookout, you can log in
+    <%= link_to "over here!", new_user_session_path %>
+  </h2>
+</div>
+
+
+<div class="clear"></div>

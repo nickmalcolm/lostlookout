@@ -14,7 +14,7 @@ Lostspot::Application.routes.draw do
 
   resources :listing_categories
 
-  devise_for :users, :controllers => { :sessions => "user/sessions" }
+  devise_for :users
   
   resources :listings do
     get :bubble
