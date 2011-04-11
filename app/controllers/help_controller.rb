@@ -18,4 +18,10 @@ class HelpController < ApplicationController
     @meta_tags = "legal, security, safety, rules, conditions, privacy, data"
   end  
   
+  def about
+    @content_for_title = "About Lost Lookout"
+    @meta_descr = "Find out what makes Lost Lookout tick. Information for press contact."
+    @meta_tags = "about, behind the scenes, founder, nick malcolm, press"
+  end
+  
 end

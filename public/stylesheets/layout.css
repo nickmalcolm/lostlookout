@@ -660,3 +660,7 @@ h1.closed{
 .closed{
 	color: #CCC;
 }
+
+.float_right{
+	float: right;
+}

@@ -37,8 +37,9 @@ Lostspot::Application.routes.draw do
   match "community/article/:id"  => "forum#show", :as => "forum_article"
   
   match "help"          =>  "help#index"
-  match "privacy"          =>  "help#privacy"
-  match "terms"          =>  "help#terms"
+  match "privacy"       =>  "help#privacy"
+  match "terms"         =>  "help#terms"
+  match "about"         =>  "help#about"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
