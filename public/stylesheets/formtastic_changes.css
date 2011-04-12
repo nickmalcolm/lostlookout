@@ -33,6 +33,10 @@ form.formtastic fieldset input[type="submit"] {
 	margin-right: 0px;
 }
 
+form.formtastic fieldset.buttons{
+	padding-left: 0px;
+}
+
 form.formtastic fieldset.buttons li{
 	float:right;
 }

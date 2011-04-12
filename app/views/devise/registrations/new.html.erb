@@ -7,6 +7,7 @@
   <div class="grid_7 alpha page_header center dark round">
     <h1>Sign Up</h1>
   </div>
+  <div class="grid_7 alpha">
   <%= semantic_form_for(@user, :url => session_path(resource_name)) do |user| %>
     <%= user.inputs do %>
       <%= user.input :email %>
@@ -18,6 +19,7 @@
       <%= user.commit_button :label => "Sign up" %>
     <% end %>
   <% end %>
+  </div>
 </div>
 
 

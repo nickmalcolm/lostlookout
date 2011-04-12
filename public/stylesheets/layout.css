@@ -595,6 +595,7 @@ label[for=location]{
 
 .field input, #user_edit input{
 	margin-left: 5px;
+	margin-bottom: 5px;
 }
 
 #cancel h4{
