@@ -15,20 +15,20 @@ module ApplicationHelper
   end
   
   def page_title
-    (@content_for_title + " on " if @content_for_title).to_s + 'Lost Lookout - Map based Lost and Found Near You.'
+    (@content_for_title + " on " if @content_for_title).to_s + 'Lost Lookout' + ((request.domain(2).to_s.eql? "lostlookout.co.nz") ? " New Zealand" : "") + ' - Map based Lost and Found Near You.'
   end
 
   def page_meta_descr
     default = "Lost or Found something? Put it on the Lost Lookout map. "+
-              "Let people know where to look out for your lost items, or"+
-              "let owners quickly and easily reward you. Lost Lookout - "+
+              "Let "+((request.domain.to_s.eql? "lostlookout.co.nz") ? "Kiwi's" : "people")+" know where to look out for your lost items, or"+
+              "let owners quickly and easily reward you. Lost Lookout " + ((request.domain(2).to_s.eql? "lostlookout.co.nz") ? "New Zealand" : "")+" - "+
               "finding lost stuff near you!"
                   
     (@meta_descr.nil? ? default : @meta_descr ).to_s
   end
   
   def page_meta_tags
-    default = "map, lost, found, "
+    default = "map, lost, found, "+( (request.domain.to_s.eql? "lostlookout.co.nz") ? "new zealand, wellington, auckland, christchurch" : "")
                   
     default += (@meta_tags.nil? ? default : @meta_tags).to_s
   end

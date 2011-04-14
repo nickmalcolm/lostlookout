@@ -122,6 +122,9 @@
   	      <%= link_to "Help", help_path %>&nbsp;&nbsp;&nbsp;
   	      <%= link_to "About", about_path %>&nbsp;&nbsp;&nbsp;
   	      &copy; Nick Malcolm 2011
+  	      <% if request.domain.to_s.eql? "lostlookout.co.nz" %>
+  	        &nbsp;|&nbsp;Lost Lookout New Zealand
+  	      <% end %>
   	    </p>
   	  </div>
   	</div>
