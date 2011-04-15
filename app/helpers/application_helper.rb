@@ -27,14 +27,34 @@ module ApplicationHelper
     (@meta_descr.nil? ? @default_descr : @meta_descr ).to_s
   end
   
-  def og_title
-    r =  content_tag(:meta, nil, :property=>"og:title", :content=> @content_for_title.nil? ? "Lost Lookout" : @content_for_title+" on Lost Lookout.com")
-    r += content_tag(:meta, nil, :property=>"og:url", :content=> request.url)
-    if @photo
-      r += content_tag(:meta, nil, :property=>"og:image", :content=>@photo.small_url)
+  def geo_meta
+    if @listing
+      content_tag(:meta, nil, :name=>"ICBM", :content=>"#{@listing.latitude},#{@listing.longitude}")
     end
-    r += content_tag(:meta, nil, :property=>"og:image", :content=> root_url+"images/circle_logo.png")
+  end
+  
+  def og_meta
+    r =  content_tag(:meta, nil, :property=>"og:title", :content=> @content_for_title.nil? ? "Lost Lookout" : @content_for_title)
+    r += content_tag(:meta, nil, :property=>"og:url", :content=> request.url)
+    r += content_tag(:meta, nil, :property=>"og:image", :content=> @photo.nil? ? root_url+"images/circle_logo.png" : @photo.small_url)
     r += content_tag(:meta, nil, :property=>"og:description", :content=>@meta_descr.nil? ? @default_descr : @meta_descr)
+    
+    if @listing
+      r += content_tag(:meta, nil, :property=>"og:latitude", :content=>@listing.latitude)
+      r += content_tag(:meta, nil, :property=>"og:longitude", :content=>@listing.longitude)
+      
+      rg = @listing.reverse_geocode.split(",")
+      
+      r += content_tag(:meta, nil, :property=>"og:street-address", :content=>rg[0])
+      unless rg.length < 2
+        r += content_tag(:meta, nil, :property=>"og:locality",       :content=>rg[1])
+      end
+      r += content_tag(:meta, nil, :property=>"og:country-name",   :content=>rg[rg.length-1])
+      
+      r += content_tag(:meta, nil, :property=>"og:type", :content => "landmark")
+    else
+      r += content_tag(:meta, nil, :property=>"og:type", :content => "website")
+    end
   end
   
   def page_meta_tags
