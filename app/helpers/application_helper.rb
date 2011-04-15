@@ -19,12 +19,22 @@ module ApplicationHelper
   end
 
   def page_meta_descr
-    default = "Lost or Found something? Put it on the Lost Lookout map. "+
-              "Let "+((request.domain.to_s.eql? "lostlookout.co.nz") ? "Kiwi's" : "people")+" know where to look out for your lost items, or"+
-              "let owners quickly and easily reward you. Lost Lookout " + ((request.domain(2).to_s.eql? "lostlookout.co.nz") ? "New Zealand" : "")+" - "+
-              "finding lost stuff near you!"
+    @default_descr =  "Lost or Found something? Put it on the Lost Lookout map. "+
+                      "Let "+((request.domain.to_s.eql? "lostlookout.co.nz") ? "Kiwi's" : "people")+" know where to look out for your lost items, or"+
+                      "let owners quickly and easily reward you. Lost Lookout " + ((request.domain(2).to_s.eql? "lostlookout.co.nz") ? "New Zealand" : "")+" - "+
+                      "finding lost stuff near you!"
                   
-    (@meta_descr.nil? ? default : @meta_descr ).to_s
+    (@meta_descr.nil? ? @default_descr : @meta_descr ).to_s
+  end
+  
+  def og_title
+    r =  content_tag(:meta, nil, :property=>"og:title", :content=> @content_for_title.nil? ? "Lost Lookout" : @content_for_title+" on Lost Lookout.com")
+    r += content_tag(:meta, nil, :property=>"og:url", :content=> request.url)
+    if @photo
+      r += content_tag(:meta, nil, :property=>"og:image", :content=>@photo.small_url)
+    end
+    r += content_tag(:meta, nil, :property=>"og:image", :content=> root_url+"images/circle_logo.png")
+    r += content_tag(:meta, nil, :property=>"og:description", :content=>@meta_descr.nil? ? @default_descr : @meta_descr)
   end
   
   def page_meta_tags
