@@ -1,6 +1,5 @@
 atom_feed do |feed|
   
-  feed.link "http://lostlookout.com"
   feed.title "Lost and Found on LostLookout.com"
   feed.subtitle "Map based lost and found"
 
@@ -19,7 +18,6 @@ atom_feed do |feed|
     @listings.each do |listing|
       feed.entry listing do |entry|
         
-        entry.updated listing.updated_at
         entry.title h(listing.state_title)
         
         summary = truncate(strip_tags(listing.description),  :length => 60)
@@ -28,17 +26,7 @@ atom_feed do |feed|
         summary += rg[0]+","+rg[1]
         entry.summary summary
         
-        photo = listing.external_photos.first
-        
         entry.content listing.description+" "+listing.state_reverse_geocode
-        
-        unless photo.nil?
-          p_url = photo.medium_url
-          entry.logo p_url
-          entry.content(:type => "image/"+p_url.split('.').last) do |c|
-            c.src = p_url
-          end
-        end
 
         entry.author do |author|
           author.name listing.user.display_name
