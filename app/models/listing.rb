@@ -79,6 +79,17 @@ class Listing < ActiveRecord::Base
     s
   end
   
+  def state_reverse_geocode
+    s = ""
+    if self.lost
+      s += "Look out around "
+    else
+      s += "Found near " 
+    end
+    
+    s += reverse_geocode
+  end
+  
   def lost_to_s
     s = self.lost ? "Lost" : "Found"
   end
