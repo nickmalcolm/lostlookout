@@ -36,6 +36,8 @@ Lostspot::Application.routes.draw do
   
   match "community/article/:id"  => "forum#show", :as => "forum_article"
   
+  match "/feed"         =>  "feeds#index"
+  
   match "help"          =>  "help#index"
   match "privacy"       =>  "help#privacy"
   match "terms"         =>  "help#terms"
