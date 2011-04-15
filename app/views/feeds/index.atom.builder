@@ -7,7 +7,7 @@ atom_feed do |feed|
   
   feed.logo root_url+"images/lost_lookout_on_white_logo.png"
   feed.icon root_url+"apple-touch-icon.png"
-  feed.rights "(C) 2011 Nick Malcolm"
+  feed.rights "&copy; 2011 Nick Malcolm"
   feed.author do |a|
     a.name  "Lost Lookout"
     a.email "team@lostlookout.com"
