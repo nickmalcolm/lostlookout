@@ -126,7 +126,7 @@
 
 <div class="grid_12 alpha omega">
   <h3>
-    <em class="gray_text">Look out around</em> <em><%= @listing.reverse_geocode %></em>
+    <em class="gray_text"><%= @listing.lost? ? "Look out around" : "Found near " %></em> <em><%= @listing.reverse_geocode %></em>
   </h3>
   <div style="display:none"><h2>Map for <%= @listing.title %>:</h2></div>
   <%= raw Cartographer::Header.new.to_s %>
