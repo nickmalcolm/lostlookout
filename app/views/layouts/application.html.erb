@@ -6,7 +6,6 @@
 		<title><%= page_title %></title>
 	
     <%= include_stylesheets :common, :media => 'all' %>
-    <%= include_javascripts :top %>
     
     <meta name="keywords" content="<%= page_meta_tags %>" />
     <meta name="description" content="<%= page_meta_descr %>" />
@@ -22,8 +21,6 @@
     <%= geo_meta %>
     
     <%= auto_discovery_link_tag :atom, "/feed.atom" %>
-    
-    <%= hoptoad_javascript_notifier %>
     
     <link rel="icon" type="image/png" href="/favicon.png">
   </head>
@@ -129,6 +126,7 @@
   	  </div>
   	</div>
   	
+    <%= hoptoad_javascript_notifier %>
   	<script type="text/javascript">
 
       var _gaq = _gaq || [];
