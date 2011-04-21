@@ -39,7 +39,7 @@ module ApplicationHelper
     r += tag(:meta, :property=>"og:image", :content=> @photo.nil? ? root_url+"images/circle_logo.png" : @photo.small_url)
     r += tag(:meta, :property=>"og:description", :content=>@meta_descr.nil? ? @default_descr : @meta_descr)
     
-    if @listing
+    if @listing && !@listing.id.nil?
       r += tag(:meta, :property=>"og:latitude", :content=>@listing.latitude)
       r += tag(:meta, :property=>"og:longitude", :content=>@listing.longitude)
       
