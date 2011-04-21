@@ -1,16 +1,9 @@
 $(document).ready(function(){
-  visible_errors = $('#notices_errors').find('.alert:visible').length;
-  setTimeout(function(){
-      hideAll();
-    },5000*visible_errors);
+  if($("#notices").attr("data-show-me") == "true"){
+    $("#notices").parent().show();
+    $("#notices").slideDown(400);
+    setTimeout(function(){
+        $("#notices").slideUp(400);
+      },5000);
+    }
 });
-function hideMe(hide_this_element){
-  hide_this_element.parent().parent().hide(400);
-  //When this gets executed it'll still be partially visible
-  if($('#notices_errors').find('.alert:visible').length == 1){
-    hideAll();
-  }
-}
-function hideAll(){
-  $(".notice_container, .alert_container").parent().hide(400);
-}

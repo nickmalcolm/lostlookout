@@ -169,11 +169,11 @@ textarea{
 	display:inline;
 }
 
-#dd_cont{
+.dd_cont{
 	z-index: 1; 
 	height: 0px; 
 	overflow: show;
-	display:none;
+	display: none;
 }
 
 .dropdown{
@@ -333,27 +333,9 @@ h3{
 	margin-top: 30px;
 	margin-bottom: 30px;
 }
+
 .home_bottom h2{
 	margin-left: 10px;
-}
-
-.alert{
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-
-.alert p{
-	margin: 5px;
-}
-
-.full_green .alert {
-	border: 5px solid #ffffff;
-	background-image: url("/images/bg_green.gif");
-}
-
-.alert {
-	border: 5px solid #c9e950;
-	background: #ffffff;
 }
 
 .top_margin{
@@ -664,4 +646,22 @@ h1.closed{
 
 .float_right{
 	float: right;
+}
+
+#notices{
+	background-color: #555;
+	background-color: rgba(85,85,85,0.9);
+	border-bottom: 5px solid #444;
+	border-bottom: 5px solid rgba(70,70,70,0.9);
+	padding: 15px 00px;
+	display: block;
+	color: #fff;
+	font-size: 120%;
+	position: relative;
+	display: none;
+	z-index: 1;
+}
+
+.error, .alert{
+	color: #F44;
 }
