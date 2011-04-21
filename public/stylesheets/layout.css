@@ -78,6 +78,13 @@ ol{
 	margin:0px;
 }
 
+.container{
+	position:absolute;
+	top:0px;
+	z-index:0;
+	width:100%;
+}
+
 .content form{
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -653,7 +660,7 @@ h1.closed{
 	background-color: rgba(85,85,85,0.9);
 	border-bottom: 5px solid #444;
 	border-bottom: 5px solid rgba(70,70,70,0.9);
-	padding: 15px 00px;
+	padding: 10px 00px;
 	display: block;
 	color: #fff;
 	font-size: 120%;
