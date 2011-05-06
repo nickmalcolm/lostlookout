@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   end
   
   def initialize_map
+    flash[:notice] = "hello"
     @map = Cartographer::Gmap.new( 'map' )    
     @map.controls << :type
     @map.controls << :large
