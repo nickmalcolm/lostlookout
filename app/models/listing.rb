@@ -103,6 +103,8 @@ class Listing < ActiveRecord::Base
     hash = Hash.new
     hash[:longitude] = longitude.to_f
     hash[:latitude] = latitude.to_f
+    hash[:title]= title
+    hash[:description] = description
     hash[:url] = "/listings/"+id.to_s
   
     return hash
