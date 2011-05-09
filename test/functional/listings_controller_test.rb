@@ -39,52 +39,52 @@ class ListingsControllerTest < ActionController::TestCase
   end
   
   
-  # test "Can see everyone's listings" do
-  #  
-  #    a = Factory(:user)
-  #    Factory(:listing, :title => "My bracelet", :user => a)
-  #    
-  #    sign_in :user, a
-  #    
-  #    get :index
-  #    assert_response :success
-  #    assert_select ".listing", :count => 1
-  #    
-  #    b = Factory(:user)
-  #    Factory(:listing, :title => "Two front teeth", :user => b, :lost => false)
-  #    
-  #    get :index
-  #    assert_response :success
-  #    assert_select ".listing", :count => 2
-  #  end
-  #  
-  #  test "Anon can see everyone's listings" do
-  #  
-  #    a = Factory(:user)    
-  #    b = Factory(:user)
-  #    Factory(:listing, :title => "My bracelet", :user => a)
-  #    Factory(:listing, :title => "Two front teeth", :user => b, :lost => false)
-  #    
-  #    get :index
-  #    assert_response :success
-  #    assert_select ".listing", :count => 2
-  #  end
-  #  
-  #  test "Closed listings are not shown on homepage" do
-  #    b = Factory(:user)
-  #    l = Factory(:listing, :title => "My bracelet", :user => b)
-  #    Factory(:listing, :title => "Two front teeth", :user => b, :lost => false)
-  #    
-  #    get :index
-  #    assert_response :success
-  #    assert_select ".listing", :count => 2
-  #    
-  #    l.close
-  #    
-  #    get :index
-  #    assert_response :success
-  #    assert_select ".listing", :count => 1
-  #  end
+  test "Can see everyone's listings" do
+     
+       a = Factory(:user)
+       Factory(:listing, :title => "My bracelet", :user => a)
+       
+       sign_in :user, a
+       
+       get :index
+       assert_response :success
+       assert_select ".listing", :count => 1
+       
+       b = Factory(:user)
+       Factory(:listing, :title => "Two front teeth", :user => b, :lost => false)
+       
+       get :index
+       assert_response :success
+       assert_select ".listing", :count => 2
+     end
+     
+     test "Anon can see everyone's listings" do
+     
+       a = Factory(:user)    
+       b = Factory(:user)
+       Factory(:listing, :title => "My bracelet", :user => a)
+       Factory(:listing, :title => "Two front teeth", :user => b, :lost => false)
+       
+       get :index
+       assert_response :success
+       assert_select ".listing", :count => 2
+     end
+     
+     test "Closed listings are not shown on homepage" do
+       b = Factory(:user)
+       l = Factory(:listing, :title => "My bracelet", :user => b)
+       Factory(:listing, :title => "Two front teeth", :user => b, :lost => false)
+       
+       get :index
+       assert_response :success
+       assert_select ".listing", :count => 2
+       
+       l.close
+       
+       get :index
+       assert_response :success
+       assert_select ".listing", :count => 1
+     end
   
   #SHOW
   
@@ -118,6 +118,20 @@ class ListingsControllerTest < ActionController::TestCase
     assert_response :success
     
     
+  end
+  
+  test "can't make a listing if not logged in"    
+    get :new
+    assert_response :redirect
+  end
+  
+  test "can make a listing if logged in"
+    a = Factory(:user)
+    
+    sign_in :user, a
+    
+    get :new
+    assert_response :success
   end
   
 end
