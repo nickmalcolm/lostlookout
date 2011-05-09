@@ -42,6 +42,8 @@ Lostspot::Application.routes.draw do
   match "privacy"       =>  "help#privacy"
   match "terms"         =>  "help#terms"
   match "about"         =>  "help#about"
+  
+  match "api/:token/listings/near" => "listings#near", :constraints=>{:token=>/[0-9a-f]{32}/}, :as => "api_near_listings"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

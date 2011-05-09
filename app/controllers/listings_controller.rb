@@ -162,6 +162,7 @@ class ListingsController < ApplicationController
       if @listing.save
         format.html { redirect_to(@listing, :notice => 'Listing was successfully created.') }
       else
+        flash[:error] = "Sorry, there are a few things you need to fix"
         format.html { render :action => "new" }
       end
     end
@@ -183,5 +184,22 @@ class ListingsController < ApplicationController
       end
     end
   end
+  
+  before_filter :authenticate_api, :only => [:near]
+  
+  def near
+    @listings = Listing.all
+    
+    respond_to do |format|
+      format.json  { render :json => @listings }
+    end
+  end
+  
+  private
+  
+    def authenticate_api
+      key = params[:token]
+      key.eql?("f725435a26294dac2e90bbc588fcdeec")
+    end
   
 end
