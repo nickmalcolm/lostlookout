@@ -101,12 +101,13 @@ class Listing < ActiveRecord::Base
   
   def as_json(options={})
     hash = Hash.new
+    hash[:lost] = lost
     hash[:longitude] = longitude.to_f
     hash[:latitude] = latitude.to_f
     hash[:title]= title
     hash[:description] = description
     hash[:url] = "/listings/"+id.to_s
-  
+    hash[:id] = id
     return hash
   end
   
