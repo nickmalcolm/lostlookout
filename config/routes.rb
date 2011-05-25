@@ -22,6 +22,7 @@ Lostspot::Application.routes.draw do
     collection do
       get :index
       get :search
+      get :near
       post :search
     end
   end

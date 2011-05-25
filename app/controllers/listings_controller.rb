@@ -19,6 +19,16 @@ class ListingsController < ApplicationController
     
     respond_to do |format|
       format.html # index.html.erb
+    end
+  end
+  
+  def near
+    puts "Hello! #{params}"
+    lat = params[:lat].nil? ? -41.2924945 : params[:lat].to_d
+    lng = params[:lng].nil? ? 174.7732353 : params[:lng].to_d
+    within = params[:within].nil? ? 10 : params[:within].to_d
+    @listings = Listing.where(:is_open => true).near(:origin => [lat, lng], :within => within)
+    respond_to do |format|
       format.json do
         render :json => @listings.to_a, :status => 200
       end
@@ -184,22 +194,5 @@ class ListingsController < ApplicationController
       end
     end
   end
-  
-  before_filter :authenticate_api, :only => [:near]
-  
-  def near
-    @listings = Listing.all
-    
-    respond_to do |format|
-      format.json  { render :json => @listings }
-    end
-  end
-  
-  private
-  
-    def authenticate_api
-      key = params[:token]
-      key.eql?("f725435a26294dac2e90bbc588fcdeec")
-    end
-  
+
 end

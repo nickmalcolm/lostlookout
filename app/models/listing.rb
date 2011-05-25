@@ -163,4 +163,29 @@ class Listing < ActiveRecord::Base
     Notifier.mail_admin(m).deliver
   end
   
+  scope :near, lambda{ |*args|
+                        origin = *args.first[:origin]
+                        if (origin).is_a?(Array)
+                          origin_latitude, origin_longitude = origin
+                        else
+                          origin_latitude, origin_longitude = origin.latitude, origin.longitude
+                        end
+                        origin_latitude, origin_longitude = self.deg2rad(origin_latitude), self.deg2rad(origin_longitude)
+                        within = *args.first[:within]
+                        {
+                          :conditions => %(
+                            (ACOS(COS(#{origin_latitude})*COS(#{origin_longitude})*COS(RADIANS(listings.latitude))*COS(RADIANS(listings.longitude))+
+                            COS(#{origin_latitude})*SIN(#{origin_longitude})*COS(RADIANS(listings.latitude))*SIN(RADIANS(listings.longitude))+
+                            SIN(#{origin_latitude})*SIN(RADIANS(listings.latitude)))*3963) <= #{within}),
+                          :select => %(listings.*,
+                            (ACOS(COS(#{origin_latitude})*COS(#{origin_longitude})*COS(RADIANS(listings.latitude))*COS(RADIANS(listings.longitude))+
+                            COS(#{origin_latitude})*SIN(#{origin_longitude})*COS(RADIANS(listings.latitude))*SIN(RADIANS(listings.longitude))+
+                            SIN(#{origin_latitude})*SIN(RADIANS(listings.latitude)))*3963) AS distance
+                          )
+                        }
+                      }
+  def self.deg2rad(degree)
+    degree*Math::PI/180
+  end
+  
 end
