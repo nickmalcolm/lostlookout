@@ -20,7 +20,7 @@ class ListingsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json do
-        render :json => @listings
+        render :json => @listings.to_a, :status => 200
       end
     end
   end
