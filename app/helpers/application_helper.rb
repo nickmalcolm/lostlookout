@@ -77,7 +77,7 @@ module ApplicationHelper
       scripts << :home
       
     #if editing users or listings
-    elsif p =~ /(\/users\/e(.*))|(\/listings\/\d\/e(.*))|(\/listings\/new)/
+    elsif p =~ /(\/users\/e(.*))|(\/listings\/.*\/edit)|(\/listings\/new)/
       scripts << :edit
       
     #Viewing listings
