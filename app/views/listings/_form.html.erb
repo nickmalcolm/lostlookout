@@ -38,7 +38,7 @@
   </div>
   
   
-  <% f.fields_for :external_photos do |ep| %>
+  <%= f.fields_for :external_photos do |ep| %>
     <div class="field grid_12 alpha omega">
       <%= ep.label :raw_url, "Photo Url"%>
       &nbsp;&nbsp;<%= ep.text_field :raw_url, :class=>"grid_4 alpha omega", :title => "If you have a photo hosted on imgur.com, you can paste it's address here." %>
