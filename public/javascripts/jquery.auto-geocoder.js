@@ -104,7 +104,15 @@ $(function() {
 					var latlng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
 			    geocoder.geocode({'latLng': latlng}, function(results, status) {
 			      if (status == google.maps.GeocoderStatus.OK) {
+			        
 			        if (results[0]) {
+			          addr_comps = results[0].address_components
+			          for(var i = 0; i < addr_comps.length; i++){
+			            var ac = addr_comps[i];
+			            if(ac.types[0] == "administrative_area_level_1"){
+			              $("#listing_area").attr("value", ac.long_name);
+			            }
+			          }
 			          $("#listing_reverse_geocode").attr("value", results[0].formatted_address);
 				        $("#user_reverse_geocode").attr("value", results[0].formatted_address);
 			        }
