@@ -1,5 +1,7 @@
 Lostspot::Application.routes.draw do
 
+  resources :devices, :only => [:update]
+
   resources :forums, :only => [:index, :show] do
     resources :topics, :except => [:destroy] do
     end
