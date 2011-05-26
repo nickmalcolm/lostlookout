@@ -28,6 +28,7 @@ class ListingsController < ApplicationController
     lng = params[:lng].nil? ? 174.7732353 : params[:lng].to_d
     within = params[:within].nil? ? 10 : params[:within].to_d
     @listings = Listing.where(:is_open => true).near(:origin => [lat, lng], :within => within)
+    
     respond_to do |format|
       format.json do
         render :json => @listings.to_a, :status => 200
@@ -170,6 +171,9 @@ class ListingsController < ApplicationController
 
     respond_to do |format|
       if @listing.save
+        if @listing.lost?
+          C2dm.broadcast("New on LostLookout: "+@listing.state_title)
+        end
         format.html { redirect_to(@listing, :notice => 'Listing was successfully created.') }
       else
         flash[:error] = "Sorry, there are a few things you need to fix"
