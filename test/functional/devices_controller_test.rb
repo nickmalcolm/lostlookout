@@ -1,49 +1,41 @@
 require 'test_helper'
 
 class DevicesControllerTest < ActionController::TestCase
-  setup do
-    @device = devices(:one)
-  end
-
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:devices)
-  end
-
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
-
-  test "should create device" do
-    assert_difference('Device.count') do
-      post :create, :device => @device.attributes
+  
+  test "can register with apid and area" do
+    assert_difference("Device.count", 1) do
+      post :register, {:apid=>"1234", :area => "Wellington"}
     end
-
-    assert_redirected_to device_path(assigns(:device))
-  end
-
-  test "should show device" do
-    get :show, :id => @device.to_param
     assert_response :success
   end
-
-  test "should get edit" do
-    get :edit, :id => @device.to_param
-    assert_response :success
+  
+  test "register creates valid Device" do
+    post :register, {:apid=>"1234", :area => "Wellington"}
+    device = Device.last
+    assert_equal "1234", device.apid
+    assert_equal "Wellington", device.area
   end
-
-  test "should update device" do
-    put :update, :id => @device.to_param, :device => @device.attributes
-    assert_redirected_to device_path(assigns(:device))
+  
+  test "No dupe " do
+    post :register, {:apid=>"1234", :area => "Wellington"}
+    
+    assert_equal 1, Device.count
+    
+    post :register, {:apid=>"1234", :area => "Wellington"}
+    
+    assert_equal 1, Device.count
   end
-
-  test "should destroy device" do
-    assert_difference('Device.count', -1) do
-      delete :destroy, :id => @device.to_param
-    end
-
-    assert_redirected_to devices_path
+  
+  test "Dupe updates area" do
+    post :register, {:apid=>"1234", :area => "Wellington"}
+    
+    device = Device.last
+    assert_equal "Wellington", device.area
+    
+    post :register, {:apid=>"1234", :area => "Taranaki"}
+    
+    device.reload
+    assert_equal "Taranaki", device.area
   end
+  
 end
