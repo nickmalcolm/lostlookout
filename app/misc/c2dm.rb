@@ -7,6 +7,7 @@ class C2dm
   
   BASE_API_URL = "https://go.urbanairship.com/api/"
   BROADCAST_URL = "push/broadcast/"
+  PUSH_URL = "push/"
   
   def self.deliver!
     
@@ -28,6 +29,14 @@ class C2dm
     #Make it
     @uri = BROADCAST_URL
     @data = {"android" => {"alert" => message.to_s}}
+    self.deliver!
+  end
+  
+  def self.push(message, area)
+    @uri = PUSH_URL
+    apids = Device.get_APIDs_as_JSON(area)
+    @data = {"apids" => apids, 
+            "android" => {"alert" => message.to_s}}
     self.deliver!
   end
   
