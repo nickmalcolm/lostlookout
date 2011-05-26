@@ -29,7 +29,7 @@ class Listing < ActiveRecord::Base
   
   attr_accessible :lost, :title, :description, :longitude, :latitude, 
                   :last_seen_at, :reverse_geocode, :value, :reward,
-                  :external_photos_attributes
+                  :external_photos_attributes, :area
   
   after_create :email_admin
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110526095510) do
+ActiveRecord::Schema.define(:version => 20110526101910) do
 
   create_table "devices", :force => true do |t|
     t.string   "apid"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20110526095510) do
     t.float    "value"
     t.float    "reward"
     t.boolean  "is_open",             :default => true
+    t.string   "area"
   end
 
   create_table "posts", :force => true do |t|
