@@ -23,11 +23,15 @@ class ListingsController < ApplicationController
   end
   
   def near
-    puts "Hello! #{params}"
+    #Default to WGTN
     lat = params[:lat].nil? ? -41.2924945 : params[:lat].to_d
     lng = params[:lng].nil? ? 174.7732353 : params[:lng].to_d
     within = params[:within].nil? ? 10 : params[:within].to_d
     @listings = Listing.where(:is_open => true).near(:origin => [lat, lng], :within => within)
+    
+    #Update all the listings (ACTUALLY) near this mobile (20km)
+    near = Listing.where(:is_open => true).near(:origin => [lat, lng], :within => 20)
+    near.update_all "mobile_lookout_count = mobile_lookout_count + 1"
     
     respond_to do |format|
       format.json do

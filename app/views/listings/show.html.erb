@@ -136,8 +136,13 @@
   </div>
 </div>
 
-<div class="grid_12">
+<div class="grid_12 gray_text center">
   <p>
     Listing created at <%= @listing.created_at.strftime("%l:%M%p %d/%m/%y") %>, and updated at <%= @listing.updated_at.strftime("%l:%M%p %d/%m/%y") %>
   </p>
+  <% if @listing.mobile_lookout_count > 0 %>
+    <p>
+      <%= pluralize @listing.mobile_lookout_count, "mobile device has", "mobile devices have" %> been looking out near here.
+    </p>
+  <% end %>
 </div>

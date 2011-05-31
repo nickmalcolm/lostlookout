@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110531135007) do
+ActiveRecord::Schema.define(:version => 20110531135952) do
 
   create_table "devices", :force => true do |t|
     t.string   "apid"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20110531135007) do
   end
 
   create_table "listings", :force => true do |t|
-    t.boolean  "lost",                :default => true
+    t.boolean  "lost",                 :default => true
     t.string   "title"
     t.text     "description"
     t.string   "longitude"
@@ -58,8 +58,9 @@ ActiveRecord::Schema.define(:version => 20110531135007) do
     t.string   "reverse_geocode"
     t.float    "value"
     t.float    "reward"
-    t.boolean  "is_open",             :default => true
+    t.boolean  "is_open",              :default => true
     t.string   "area"
+    t.integer  "mobile_lookout_count", :default => 0
   end
 
   create_table "posts", :force => true do |t|
