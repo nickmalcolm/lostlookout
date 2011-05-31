@@ -10,13 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110526101910) do
+ActiveRecord::Schema.define(:version => 20110531135007) do
 
   create_table "devices", :force => true do |t|
     t.string   "apid"
     t.string   "area"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "external_photos", :force => true do |t|
