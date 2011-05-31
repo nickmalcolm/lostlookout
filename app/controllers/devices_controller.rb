@@ -5,11 +5,13 @@ class DevicesController < ApplicationController
     unless params.nil? || params["apid"].nil?
       @device = Device.find_by_apid(params["apid"])
       if @device.nil?
-        if Device.create!(:apid => params[:apid], :area => params[:area])
+        if Device.create!(:apid => params[:apid], :area => params[:area], 
+            :latitude => params[:lat], :longitude => params[:lng])
           head :ok
         end
       else 
-        if @device.update_attributes(:area => params["area"])
+        if @device.update_attributes(:area => params["area"], 
+            :latitude => params[:lat], :longitude => params[:lng])
           head :ok
         end
       end
