@@ -19,6 +19,9 @@ class ListingsController < ApplicationController
     
     respond_to do |format|
       format.html # index.html.erb
+      format.json do
+        render :json => @listings
+      end
     end
   end
   
@@ -28,10 +31,6 @@ class ListingsController < ApplicationController
     lng = params[:lng].nil? ? 174.7732353 : params[:lng].to_d
     within = params[:within].nil? ? 10 : params[:within].to_d
     @listings = Listing.where(:is_open => true).near(:origin => [lat, lng], :within => within)
-    
-    #Update all the listings (ACTUALLY) near this mobile (20km)
-    near = Listing.where(:is_open => true).near(:origin => [lat, lng], :within => 20)
-    near.update_all "mobile_lookout_count = mobile_lookout_count + 1"
     
     respond_to do |format|
       format.json do
