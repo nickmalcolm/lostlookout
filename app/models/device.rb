@@ -3,6 +3,8 @@ class Device < ActiveRecord::Base
   validates :apid, :presence => true, :uniqueness => true
   validates :area, :presence => true
   
+  after_save :update_listings
+  
   attr_accessible :apid, :area
   
   scope :located_in, lambda{ |area|
@@ -42,6 +44,15 @@ class Device < ActiveRecord::Base
     end
     
     apids
+  end
+  
+  def update_listings
+    #Update all the listings near this mobile (20km)
+    unless latitude.nil? || longitude.nil?
+      near = Listing.where(:is_open => true).near(:origin => [latitude, longitude], :within => 10)
+      near.update_all "mobile_lookout_count = mobile_lookout_count + 1"
+    end
+    true
   end
   
 end
