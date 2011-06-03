@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
     if self.display_name.blank?
       self.display_name = email.split("@")[0].capitalize
     end
+    true
   end
     
     
