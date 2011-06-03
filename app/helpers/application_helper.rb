@@ -69,7 +69,6 @@ module ApplicationHelper
   
   def javascript_includes
     p = request.path
-    p request.path == listings_path
     scripts = [:bottom]
     
     #Homepage
