@@ -10,7 +10,7 @@ class DevicesController < ApplicationController
           head :ok
         end
       else 
-        if @device.update_attributes(:area => params["area"], 
+        if @device.update_attributes(:area => params[:area], 
             :latitude => params[:lat], :longitude => params[:lng])
           head :ok
         end

@@ -5,7 +5,7 @@ class Device < ActiveRecord::Base
   
   after_save :update_listings
   
-  attr_accessible :apid, :area
+  attr_accessible :apid, :area, :latitude, :longitude
   
   scope :located_in, lambda{ |area|
       Device.where(:area => area)
@@ -44,6 +44,18 @@ class Device < ActiveRecord::Base
     end
     
     apids
+  end
+  
+  def self.get_APIDs_from_latlng(lat, lng, within = 10)
+    apids = []
+    unless lat.nil? || lng.nil?
+      devices = Device.near(:origin => [lat,lng], :within => within)
+      devices.each do |d|
+        apids << d.apid
+      end
+    
+      apids
+    end 
   end
   
   def update_listings

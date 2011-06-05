@@ -40,4 +40,12 @@ class C2dm
     self.deliver!
   end
   
+  def self.push_to_latlng(message, lat, lng, radius)
+    @uri = PUSH_URL
+    apids = Device.get_APIDs_from_latlng(lat, lng, radius)
+    @data = {"apids" => apids, 
+            "android" => {"alert" => message.to_s}}
+    self.deliver!
+  end
+  
 end
