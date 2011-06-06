@@ -106,6 +106,7 @@ class Listing < ActiveRecord::Base
     hash[:latitude] = latitude.to_f
     hash[:title]= title
     hash[:description] = description
+    hash[:icon_url] = external_photos.any? ? external_photos.first.small_url : nil
     hash[:url] = "/listings/"+id.to_s
     hash[:id] = id
     return hash
