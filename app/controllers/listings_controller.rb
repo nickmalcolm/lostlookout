@@ -174,7 +174,7 @@ class ListingsController < ApplicationController
 
     respond_to do |format|
       if @listing.save
-        C2dm.push_to_latlng("New on LostLookout: "+@listing.state_title, @listing.latitude, @listing.longitude, 8)
+        #C2dm.push_to_latlng("New on LostLookout: "+@listing.state_title, @listing.latitude, @listing.longitude, 8)
         format.html { redirect_to(@listing, :notice => 'Listing was successfully created.') }
       else
         flash[:error] = "Sorry, there are a few things you need to fix"
