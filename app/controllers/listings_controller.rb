@@ -40,7 +40,7 @@ class ListingsController < ApplicationController
   end
   
   def search
-    @content_for_title = "Searching for "+params[:search]
+    @content_for_title = "Searching for #{params[:search]}"
     @meta_descr = @content_for_title+" on map based lost and found, Lost Lookout."
     order = Listing.sortable_to_column(0)
     if params[:sort]
