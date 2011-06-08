@@ -51,7 +51,7 @@ class ListingsController < ApplicationController
     @search_terms = params[:search]
     @count = @listings.count
     
-    @meta_tags = params[:search].parameterize.split(/-/).join(", ")+", "
+    @meta_tags = params[:search].nil? "" : params[:search].parameterize.split(/-/).join(", ")+", "
     @listings.each {|t| @meta_tags += t.meta_tags+", "}
   end
 
